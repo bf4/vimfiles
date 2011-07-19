@@ -4,3 +4,33 @@
 [submodule "bundle/vim-ruby"]
 	path = bundle/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = git://github.com/akitaonrails/Command-T.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git://github.com/ervandew/supertab.git
+[submodule "bundle/git"]
+	path = bundle/git
+	url = git://github.com/tpope/vim-git.git
+[submodule "bundle/html5"]
+	path = bundle/html5
+	url = git://github.com/othree/html5.vim.git
+[submodule "bundle/haml"]
+	path = bundle/haml
+	url = git://github.com/tpope/vim-haml.git
+[submodule "bundle/rbrepl"]
+	path = bundle/rbrepl
+	url = git://github.com/Bogdanp/rbrepl.vim.git
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule "bundle/ack"]
+	path = bundle/ack
+	url = git://github.com/mileszs/ack.vim.git
+[submodule "bundle/clang_complete"]
+	path = bundle/clang_complete
+	url = git://github.com/Rip-Rip/clang_complete.git
