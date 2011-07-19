@@ -44,3 +44,4 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
