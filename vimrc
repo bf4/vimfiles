@@ -15,6 +15,9 @@ filetype indent on
 "turn on syntax highlighting
 syntax on
 
+"Show line numbers
+set number
+
 "hide buffers when not displayed
 set hidden
 set nocompatible
