@@ -61,6 +61,3 @@
 [submodule "bundle/textile"]
 	path = bundle/textile
 	url = git://github.com/timcharper/textile.vim.git
-[submodule "bundle/vim-lua-inspect"]
-	path = bundle/vim-lua-inspect
-	url = https://github.com/xolox/vim-lua-inspect.git
