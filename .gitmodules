@@ -22,9 +22,6 @@
 [submodule "bundle/haml"]
 	path = bundle/haml
 	url = git://github.com/tpope/vim-haml.git
-[submodule "bundle/rbrepl"]
-	path = bundle/rbrepl
-	url = git://github.com/Bogdanp/rbrepl.vim.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -64,3 +61,6 @@
 [submodule "bundle/textile"]
 	path = bundle/textile
 	url = git://github.com/timcharper/textile.vim.git
+[submodule "bundle/vim-lua-inspect"]
+	path = bundle/vim-lua-inspect
+	url = https://github.com/xolox/vim-lua-inspect.git
