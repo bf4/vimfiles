@@ -74,3 +74,26 @@ nmap <D-k> gk
 nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'rails.vim'
+Bundle 'html5.vim'
+Bundle 'The-NERD-tree'
+Bundle 'Command-T'
+Bundle 'Syntastic'
+Bundle 'SuperTab'
+Bundle 'vim-coffee-script'
+Bundle 'ack.vim'
+Bundle 'haml.zip'
+Bundle 'clang-complete'
+Bundle 'asciidoc.vim'
+Bundle 'Markdown'
+Bundle 'git://github.com/tpope/vim-git.git'
+Bundle 'csharp.vim'
+Bundle 'jQuery'
