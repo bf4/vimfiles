@@ -1,6 +1,3 @@
-"avoiding annoying CSApprox warning message
-let g:CSApprox_verbose_level = 0
-
 "necessary on some Linux distros for pathogen to properly load bundles
 filetype on
 filetype off
@@ -23,9 +20,10 @@ set nocompatible
 set mouse=a
 set ttymouse=xterm2
 
+set tabstop=2
+
 if has("gui_running")
 	set t_Co=256
-	colorscheme railscasts
   set guifont=Monospace\ Bold\ 12
   
   if has("gui_mac") || has("gui_macvim")
@@ -72,6 +70,10 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
+" Set tab completion properly
+set wildmode=longest,list,full
+set wildmenu
+
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -94,3 +96,5 @@ Bundle 'jQuery'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Railscasts-Theme-GUIand256color'
+
+colorscheme railscasts
