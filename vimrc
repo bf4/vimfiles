@@ -23,7 +23,7 @@ set ttymouse=xterm2
 set tabstop=2
 
 if has("gui_running")
-	set t_Co=256
+  set t_Co=256
   set guifont=Monospace\ Bold\ 12
   
   if has("gui_mac") || has("gui_macvim")
@@ -38,6 +38,7 @@ endif
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 silent! nmap <silent> <Leader>t :CommandT<CR>
 silent! nmap <silent> <Leader>l :nohls<CR>
+silent! nmap <silent> <Leader>e :TagbarToggle<CR>
 
 silent! nmap <silent> <C-s> :w<CR>
 
@@ -81,20 +82,16 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-Bundle 'html5.vim'
 Bundle 'The-NERD-tree'
 Bundle 'Command-T'
-Bundle 'Syntastic'
 Bundle 'SuperTab'
 Bundle 'vim-coffee-script'
 Bundle 'ack.vim'
-Bundle 'haml.zip'
 Bundle 'asciidoc.vim'
-Bundle 'Markdown'
-Bundle 'csharp.vim'
-Bundle 'jQuery'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Railscasts-Theme-GUIand256color'
+Bundle 'Tagbar'
+Bundle 'haml.zip'
+Bundle 'railscasts'
 
 colorscheme railscasts
