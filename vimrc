@@ -93,5 +93,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Tagbar'
 Bundle 'haml.zip'
 Bundle 'railscasts'
+Bundle 'endwise.vim'
 
 colorscheme railscasts
