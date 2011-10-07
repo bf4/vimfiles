@@ -6,6 +6,9 @@ filetype off
 filetype plugin on
 filetype indent on
 
+" I hate you MacVim
+:set go+=c
+
 "turn on syntax highlighting
 syntax on
 
@@ -47,6 +50,7 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Indent settings
 set shiftwidth=2 
@@ -57,6 +61,9 @@ set autoindent
 " Setup searching
 set incsearch
 set hlsearch
+
+" Load tags from current or any parent path
+set tags=tags;/
 
 "mapping for command key to map navigation thru display lines instead
 "of just numbered lines
@@ -83,6 +90,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'The-NERD-tree'
+Bundle 'The-NERD-Commenter'
 Bundle 'Command-T'
 Bundle 'SuperTab'
 Bundle 'vim-coffee-script'
@@ -94,5 +102,10 @@ Bundle 'Tagbar'
 Bundle 'haml.zip'
 Bundle 'railscasts'
 Bundle 'endwise.vim'
+Bundle 'IndexedSearch'
+Bundle 'bufexplorer.zip'
+
+" Simple navigation in help
+Bundle 'juanpabloaj/help.vim.git'
 
 colorscheme railscasts
