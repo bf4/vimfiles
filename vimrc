@@ -107,5 +107,6 @@ Bundle 'bufexplorer.zip'
 
 " Simple navigation in help
 Bundle 'juanpabloaj/help.vim.git'
+Bundle 'go.vim-B'
 
 colorscheme railscasts
