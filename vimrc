@@ -7,7 +7,7 @@ filetype plugin on
 filetype indent on
 
 " I hate you MacVim
-:set go+=c
+set go+=c
 
 "turn on syntax highlighting
 syntax on
@@ -27,10 +27,11 @@ set tabstop=2
 
 if has("gui_running")
   set t_Co=256
-  set guifont=Monospace\ Bold\ 12
   
   if has("gui_mac") || has("gui_macvim")
     set guifont=Menlo:h14
+  else
+    set guifont=Monospace\ Bold\ 12
   endif
 else
   "dont load csapprox if there is no gui support - silences an annoying warning
@@ -40,8 +41,9 @@ endif
 " Mappings for plugins
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 silent! nmap <silent> <Leader>t :CommandT<CR>
-silent! nmap <silent> <Leader>l :nohls<CR>
 silent! nmap <silent> <Leader>e :TagbarToggle<CR>
+silent! nmap <silent> <Leader>l :set list!<CR>
+silent! nmap <silent> <Leader>] :nohls<CR>
 
 silent! nmap <silent> <C-s> :w<CR>
 
@@ -64,6 +66,9 @@ set hlsearch
 
 " Load tags from current or any parent path
 set tags=tags;/
+
+set listchars=tab:▸\ ,eol:¬
+set showbreak=…
 
 "mapping for command key to map navigation thru display lines instead
 "of just numbered lines
@@ -110,3 +115,4 @@ Bundle 'juanpabloaj/help.vim.git'
 Bundle 'go.vim-B'
 
 colorscheme railscasts
+
