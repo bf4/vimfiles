@@ -39,11 +39,12 @@ else
 endif
 
 " Mappings for plugins
-silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
-silent! nmap <silent> <Leader>t :CommandT<CR>
-silent! nmap <silent> <Leader>e :TagbarToggle<CR>
-silent! nmap <silent> <Leader>l :set list!<CR>
-silent! nmap <silent> <Leader>] :nohls<CR>
+silent! nnoremap <silent> <Leader>p :NERDTreeToggle<CR>
+silent! nnoremap <silent> <Leader>t :CommandT<CR>
+silent! nnoremap <silent> <Leader>e :TagbarToggle<CR>
+silent! nnoremap <silent> <Leader>l :set list!<CR>
+silent! nnoremap <silent> <Leader>] :nohls<CR>
+silent! nnoremap <silent> <Leader>a :Ack <cword><CR>
 
 silent! nmap <silent> <C-s> :w<CR>
 
@@ -95,12 +96,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'The-NERD-tree'
-Bundle 'The-NERD-Commenter'
 Bundle 'Command-T'
 Bundle 'SuperTab'
 Bundle 'vim-coffee-script'
 Bundle 'ack.vim'
-Bundle 'asciidoc.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Tagbar'
@@ -109,10 +108,11 @@ Bundle 'railscasts'
 Bundle 'endwise.vim'
 Bundle 'IndexedSearch'
 Bundle 'bufexplorer.zip'
-
-" Simple navigation in help
-Bundle 'juanpabloaj/help.vim.git'
-Bundle 'go.vim-B'
+Bundle 'Gundo'
 
 colorscheme railscasts
 
+if has("autocmd")
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+endif
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
