@@ -1,0 +1,19 @@
+" I hate you MacVim
+set go+=c
+"
+"setup the mouse for terminal use
+set mouse=a
+set ttymouse=xterm2
+
+if has("gui_running")
+  set t_Co=256
+
+  if has("gui_mac") || has("gui_macvim")
+    set guifont=Menlo:h14
+  else
+    set guifont=Monospace\ Bold\ 12
+  endif
+else
+  "dont load csapprox if there is no gui support - silences an annoying warning
+  let g:CSApprox_loaded = 1
+endif

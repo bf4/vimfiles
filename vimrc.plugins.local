@@ -1,0 +1,23 @@
+
+set runtimepath+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+Bundle 'The-NERD-tree'
+Bundle 'Command-T'
+Bundle 'SuperTab'
+Bundle 'vim-coffee-script'
+Bundle 'ack.vim'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Tagbar'
+Bundle 'haml.zip'
+Bundle 'railscasts'
+Bundle 'endwise.vim'
+Bundle 'IndexedSearch'
+Bundle 'bufexplorer.zip'
+Bundle 'Gundo'
+Bundle 'vim-scripts/tComment'
