@@ -29,6 +29,11 @@ silent! nnoremap <silent> <Leader>l :set list!<CR>
 silent! nnoremap <silent> <Leader>] :nohls<CR>
 silent! nnoremap <silent> <Leader>a :Ack <cword><CR>
 
+" tslime.vim bindings https://github.com/jgdavey/tslime.vim
+" vmap <C-c><C-c> <Plug>SendSelectionToTmux
+" nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+" nmap <C-c>r <Plug>SetTmuxVars
+
 silent! nmap <silent> <C-s> :w<CR>
 
 "key mapping for window navigation

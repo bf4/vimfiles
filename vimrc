@@ -78,27 +78,15 @@ set wildmode=longest,list,full
 set wildmenu
 
 
-" colorscheme railscasts
-" colorscheme Dark2BF
-colorscheme asmanian_bloodBF
-
+" colorscheme, see guis.local
 
 " Use local vimrcs if available {
-    if filereadable(expand("~/.vim/vimrc.syntax.local"))
-        source ~/.vim/vimrc.syntax.local
-    endif
-    if filereadable(expand("~/.vim/vimrc.guis.local"))
-        source ~/.vim/vimrc.guis.local
-    endif
-    if filereadable(expand("~/.vim/vimrc.mappings.local"))
-        source ~/.vim/vimrc.mappings.local
-    endif
-    if filereadable(expand("~/.vim/vimrc.plugins.local"))
-        source ~/.vim/vimrc.plugins.local
-    endif
-    " if filereadable(expand("~/.vim/vimrc.statusline.local"))
-    "     source ~/.vim/vimrc.statusline.local
-    " endif
+    source ~/.vim/vimrc.syntax.local
+    source ~/.vim/vimrc.mappings.local
+    source ~/.vim/vimrc.plugins.local
+    " guis must be after plugins so that Bundled colors are available
+    source ~/.vim/vimrc.guis.local
+    source ~/.vim/vimrc.statusline.local
     if filereadable(expand("~/.vim/vimrc.experimental.local"))
         source ~/.vim/vimrc.experimental.local
     endif

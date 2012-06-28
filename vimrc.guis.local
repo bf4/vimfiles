@@ -1,5 +1,3 @@
-" I hate you MacVim
-set go+=c
 "
 "setup the mouse for terminal use
 set mouse=a
@@ -10,10 +8,18 @@ if has("gui_running")
 
   if has("gui_mac") || has("gui_macvim")
     set guifont=Menlo:h14
+    " colorscheme Dark2BF
+    colorscheme asmanian_bloodBF
+    " Tell MacVim not to pop up a dialog on changed file vs. swp
+    set go+=c
   else
     set guifont=Monospace\ Bold\ 12
+    colorscheme railscasts
   endif
 else
   "dont load csapprox if there is no gui support - silences an annoying warning
   let g:CSApprox_loaded = 1
+  " set background=dark
+  " colorscheme solarized
+  colorscheme railscasts
 endif

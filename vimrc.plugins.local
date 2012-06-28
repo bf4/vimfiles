@@ -21,3 +21,8 @@ Bundle 'IndexedSearch'
 Bundle 'bufexplorer.zip'
 Bundle 'Gundo'
 Bundle 'vim-scripts/tComment'
+" tmux
+Bundle 'jgdavey/tslime.vim'
+Bundle 'jgdavey/vim-turbux'
+" colorschemes
+Bundle 'altercation/vim-colors-solarized'
