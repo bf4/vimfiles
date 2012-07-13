@@ -330,4 +330,11 @@ delf <SID>grey_level
 delf <SID>grey_number
 " }}}
 
-
+hi Search ctermbg=red
+hi Search guibg=red
+hi IncSearch ctermbg=green
+hi IncSearch guibg=darkblue
+hi Cursor guibg=darkblue
+hi Cursor ctermbg=darkblue
+hi Cursor guifg=white
+hi Cursor ctermfg=white

@@ -17,9 +17,9 @@ function! SetStatusLine()
   set statusline+=%#StatusLineFileType#%y " Then show the file type
 
   " Fugitive
-  set statusline+=%#StatusLineGit#
-  set statusline+=%{fugitive#statusline()}
-  set statusline+=%#StatusLine#
+  " set statusline+=%#StatusLineGit#
+  " set statusline+=%{fugitive#statusline()}
+  " set statusline+=%#StatusLine#
 
   " Right aligned items
   set statusline+=%=
