@@ -23,7 +23,7 @@ autocmd FileType ruby,haml,erb autocmd BufWritePre     * :call TrimWhiteSpace()
 "
 " Mappings for plugins
 silent! nnoremap <silent> <Leader>p :NERDTreeToggle<CR>
-silent! nnoremap <silent> <Leader>t :CommandT<CR>
+" silent! nnoremap <silent> <Leader>t :CommandT<CR>
 silent! nnoremap <silent> <Leader>e :TagbarToggle<CR>
 silent! nnoremap <silent> <Leader>l :set list!<CR>
 silent! nnoremap <silent> <Leader>] :nohls<CR>

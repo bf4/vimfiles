@@ -5,24 +5,38 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
 
 Bundle 'The-NERD-tree'
-Bundle 'Command-T'
-Bundle 'SuperTab'
-Bundle 'vim-coffee-script'
-Bundle 'ack.vim'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Tagbar'
-Bundle 'haml.zip'
-Bundle 'railscasts'
+autocmd vimenter * if !argc() | NERDTree | endif
+" Bundle 'Command-T'
+Bundle 'CtrlP'
+" Create a file called root.dir in the root of your project - to make CtrlP work really nicely
+
+" Bundle 'SuperTab'
+" Bundle 'vim-coffee-script'
+" Bundle 'ack.vim'
+" Bundle 'tpope/vim-rails'
+" Bundle 'vim-bundler'
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'Tagbar'
+" Bundle 'haml.zip'
 Bundle 'endwise.vim'
-Bundle 'IndexedSearch'
-Bundle 'bufexplorer.zip'
-Bundle 'Gundo'
+" Bundle 'IndexedSearch'
+" Bundle 'bufexplorer.zip'
+" Bundle 'Gundo'
 Bundle 'vim-scripts/tComment'
+
 " tmux
-Bundle 'jgdavey/tslime.vim'
-Bundle 'jgdavey/vim-turbux'
+" Bundle 'jgdavey/tslime.vim'
+" Bundle 'jgdavey/vim-turbux'
+
 " colorschemes
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'railscasts'

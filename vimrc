@@ -36,8 +36,27 @@
 "
 " ending with the double slash includes the full path in the filename
 " of the swap files to avoid conflicts
-set directory=~/.vim/tmp//
+if has("win32") || has("win64")
+  set directory=$TMP
+else
+  set directory=~/.vim/tmp//
+  set backspace+=start,eol,indent 
+end
+set nobackup
+" Having this set will not leave any additional file(s) around after having closed VIM. This is what most people might be looking to have set.
+
+" set nowritebackup
+"I do not set this one. The default is :set writebackup This will keep a backup file while the file is being worked. Once VIM is closed; the backup will vanish.
+
+set noswapfile
+" From the VIM help file.
+" - Don’t use this for big files.
+" - Recovery will be impossible!
+" In essence; if security is a concern, use noswapfile. Keep in mind that this option will keep everything in memory.
 "
+" don't require me to press enter when redrawing the screen
+set shortmess+=A
+
 "necessary on some Linux distros for pathogen to properly load bundles
 filetype on
 filetype off
@@ -52,6 +71,7 @@ set number
 
 "hide buffers when not displayed
 set hidden
+" use improved vim
 set nocompatible
 
 
@@ -93,7 +113,9 @@ set wildmenu
 " }
 
 if has("autocmd")
-  autocmd BufReadPost fugitive://* set bufhidden=delete
+  " autocmd BufReadPost fugitive://* set bufhidden=delete
 endif
 
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" fugitive
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
