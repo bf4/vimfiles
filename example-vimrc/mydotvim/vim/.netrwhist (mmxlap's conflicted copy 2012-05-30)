@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/bfleischer/workspace/metromix-express'
+let g:netrw_dirhist_2='/Users/bfleischer/workspace/metromix.com'
+let g:netrw_dirhist_3='/Users/bfleischer/workspace/metromix.com/cms'
+let g:netrw_dirhist_4='/Users/bfleischer/workspace/mmx_common'
+let g:netrw_dirhist_5='/Users/bfleischer/workspace/metromix.com/extrovert'
