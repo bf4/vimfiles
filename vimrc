@@ -34,28 +34,45 @@
 " http://bytefluent.com/vivify/
 "
 "
-" ending with the double slash includes the full path in the filename
-" of the swap files to avoid conflicts
 if has("win32") || has("win64")
   set directory=$TMP
 else
+  " ending with the double slash includes the full path in the filename
+  " of the swap files to avoid conflicts
   set directory=~/.vim/tmp//
-  set backspace+=start,eol,indent 
+  " _ backups {{{
+  set undodir=~/.vim/undodir//     " undo files
+  set backupdir=~/.vim/tmp/backup// " backups
+  " set directory=~/.vim/tmp/swap//   " swap files
+  set backup
+  " set noswapfile
+  " " _ }}}
+  " the below breaks vi from the cli for some reason
+  " set backspace+=start,eol,indent
+  " set backspace=indent,eol,start
 end
-set nobackup
+set history=1000
+set incsearch
+set laststatus=2
+set list
+set encoding=utf-8
+" Disable the macvim toolbar
+" set guioptions-=T
+
+" set nobackup
 " Having this set will not leave any additional file(s) around after having closed VIM. This is what most people might be looking to have set.
 
 " set nowritebackup
 "I do not set this one. The default is :set writebackup This will keep a backup file while the file is being worked. Once VIM is closed; the backup will vanish.
 
-set noswapfile
+" set noswapfile
 " From the VIM help file.
 " - Don’t use this for big files.
 " - Recovery will be impossible!
 " In essence; if security is a concern, use noswapfile. Keep in mind that this option will keep everything in memory.
 "
 " don't require me to press enter when redrawing the screen
-set shortmess+=A
+" set shortmess+=A
 
 "necessary on some Linux distros for pathogen to properly load bundles
 filetype on
@@ -89,15 +106,27 @@ set incsearch
 set hlsearch
 
 
-set listchars=tab:▸\ ,eol:¬
-set showbreak=…
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+" set showbreak=…
+set showbreak=↪
 
+" bing bell
+set visualbell
 
 " Set tab completion properly
 set wildmode=longest,list,full
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc
 set wildmenu
 
-
+" Yank from current cursor position to end of line
+map Y y$
+"
+" " Triggers {{{
+"
+" " Save when losing focus
+" au FocusLost    * :silent! wall
+"
+" " }}}
 " colorscheme, see guis.local
 
 " Use local vimrcs if available {

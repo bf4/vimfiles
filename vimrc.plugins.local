@@ -32,8 +32,11 @@ Bundle 'endwise.vim'
 " Bundle 'bufexplorer.zip'
 " Bundle 'Gundo'
 Bundle 'vim-scripts/tComment'
+Bundle 'chrismetcalf/vim-yankring'
+" git update-server-info
 
-" tmux
+
+""  tmux
 " Bundle 'jgdavey/tslime.vim'
 " Bundle 'jgdavey/vim-turbux'
 
