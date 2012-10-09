@@ -16,10 +16,10 @@ Bundle 'gmarik/vundle'
 Bundle 'The-NERD-tree'
 autocmd vimenter * if !argc() | NERDTree | endif
 " Bundle 'Command-T'
-Bundle 'CtrlP'
+Bundle 'kien/ctrlp.vim'
 " Create a file called root.dir in the root of your project - to make CtrlP work really nicely
 
-" Bundle 'SuperTab'
+Bundle 'SuperTab'
 " Bundle 'vim-coffee-script'
 " Bundle 'ack.vim'
 " Bundle 'tpope/vim-rails'
@@ -34,6 +34,7 @@ Bundle 'endwise.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'chrismetcalf/vim-yankring'
 " git update-server-info
+Bundle 'scrooloose/syntastic'
 
 
 ""  tmux
