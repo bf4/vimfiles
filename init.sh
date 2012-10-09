@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-# git submodule update --init
+# called by install.sh
 mkdir -p ./tmp
+mkdir -p $HOME/.vim-tmp
+# link .vim and .vimrc
 mv ~/.vim ~/.vim.oldbf
 ln -s $(pwd) ~/.vim
 mv ~/.vimrc ~/.vimrc.oldbf
 ln -s $(pwd)/vimrc ~/.vimrc
-# vim +BundleInstall +qall
+# install ctags
 # https://github.com/tpope/gem-ctags
 echo 'brew install ctags'
 echo 'gem install gem-ctags'
