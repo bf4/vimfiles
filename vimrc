@@ -313,6 +313,9 @@ map <leader>v :view %%
     if filereadable(expand("~/.vim/vimrc.experimental.vim"))
         source ~/.vim/vimrc.experimental.vim
     endif
+    if filereadable(expand("~/.vim/vimrc.local.vim"))
+        source ~/.vim/vimrc.local.vim
+    endif
     source ~/.vim/vimrc.loadlast.vim
 " }
 

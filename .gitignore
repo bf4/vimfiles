@@ -4,3 +4,4 @@ bundle/*
 tmp
 undodir
 .DS_Store
+vimrc.local.vim
