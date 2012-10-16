@@ -44,9 +44,13 @@ Bundle 'scrooloose/syntastic'
 " Bundle 'jgdavey/vim-turbux'
 
 " colorschemes
+" see https://code.google.com/p/vimcolorschemetest/
+" http://bytefluent.com/vivify/
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'bf4/vim-wombat256i'
+Bundle 'molokai'
 Bundle 'railscasts'
-
 " grb
 " [submodule "bundle/vundle"]
 "   ignore = dirty
