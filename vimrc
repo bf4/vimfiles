@@ -304,15 +304,15 @@ map <leader>v :view %%
 
 " Use local vimrcs if available {
     " source ~/.vim/vimrc.setup.local
-    source ~/.vim/vimrc.syntax.local
-    source ~/.vim/vimrc.mappings.local
-    source ~/.vim/vimrc.plugins.local
+    source ~/.vim/vimrc.syntax.vim
+    source ~/.vim/vimrc.mappings.vim
+    source ~/.vim/vimrc.plugins.vim
     " " guis must be after plugins so that Bundled colors are available
-    source ~/.vim/vimrc.guis.local
-    source ~/.vim/vimrc.statusline.local
-    if filereadable(expand("~/.vim/vimrc.experimental.local"))
-        source ~/.vim/vimrc.experimental.local
+    source ~/.vim/vimrc.guis.vim
+    source ~/.vim/vimrc.statusline.vim
+    if filereadable(expand("~/.vim/vimrc.experimental.vim"))
+        source ~/.vim/vimrc.experimental.vim
     endif
-    source ~/.vim/vimrc.loadlast.local
+    source ~/.vim/vimrc.loadlast.vim
 " }
 
