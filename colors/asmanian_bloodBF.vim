@@ -76,11 +76,13 @@ hi Exception guifg=#903020 guibg=#080404 guisp=#080404 gui=underline ctermfg=88 
 hi Keyword guifg=#705850 guibg=#080404 guisp=#080404 gui=italic ctermfg=95 ctermbg=232 cterm=NONE
 hi Type guifg=#945f4d guibg=#34384d guisp=#34384d gui=italic ctermfg=137 ctermbg=239 cterm=NONE
 hi DiffChange guifg=#a1a83e guibg=NONE guisp=NONE gui=NONE ctermfg=143 ctermbg=NONE cterm=NONE
+" http://vim.wikia.com/wiki/Change_the_gvim_mouse_arrow_cursor
+" http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
 " setting blinking cursor color and character highlight as bold
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'guicursor'
 " http://vim.wikia.com/wiki/Configuring_the_cursor
 " blinking off option: http://www.miek.nl/s/49240b66f0/ set
-" gcr=a:blinkwait0,a:block-cursor
+set gcr=a:blinkwait0,a:block-cursor
 hi Cursor guifg=#64de85 guibg=#bdb857 guisp=#bdb857 gui=bold ctermfg=78 ctermbg=143 cterm=bold
 hi SpellLocal guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
 hi Error guifg=#e2e4e5 guibg=#854d50 guisp=#854d50 gui=NONE ctermfg=254 ctermbg=95 cterm=NONE
