@@ -24,10 +24,10 @@ autocmd vimenter * if !argc() | NERDTree | endif
 Bundle 'SuperTab'
 " Bundle 'vim-coffee-script'
 " Bundle 'ack.vim'
-" Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rails'
 " Bundle 'vim-bundler'
 " Bundle 'tpope/vim-fugitive'
-" Bundle 'Tagbar'
+Bundle 'Tagbar'
 " Bundle 'haml.zip'
 Bundle 'endwise.vim'
 " Bundle 'IndexedSearch'
@@ -52,25 +52,15 @@ Bundle 'bf4/vim-wombat256i'
 Bundle 'molokai'
 Bundle 'railscasts'
 " grb
-" [submodule "bundle/vundle"]
-"   ignore = dirty
 Bundle 'wincent/Command-T'
-"    ignore = untracked
 Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/L9'
-Bundle 'clones/vim-fuzzyfinder'
-" [submodule "bundle/vim-colors-solarized"]
+" Bundle 'vim-scripts/L9'
+" Bundle 'clones/vim-fuzzyfinder'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tsaleh/vim-matchit'
+" Bundle 'tpope/vim-commentary'
+" Bundle 'tpope/vim-eunuch'
+" Bundle 'tsaleh/vim-matchit'
 filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
  "
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
