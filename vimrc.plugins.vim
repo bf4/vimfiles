@@ -26,19 +26,19 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'SuperTab'
 " Bundle 'vim-coffee-script'
 " Bundle 'ack.vim'
-Bundle 'tpope/vim-rails'
+" Bundle 'tpope/vim-rails'
 " Bundle 'vim-bundler'
 " Bundle 'tpope/vim-fugitive'
-Bundle 'Tagbar'
+" Bundle 'Tagbar'
 " Bundle 'haml.zip'
 Bundle 'endwise.vim'
 " Bundle 'IndexedSearch'
 " Bundle 'bufexplorer.zip'
 " Bundle 'Gundo'
 Bundle 'vim-scripts/tComment'
-Bundle 'chrismetcalf/vim-yankring'
+" Bundle 'chrismetcalf/vim-yankring'
 " git update-server-info
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 
 
 ""  tmux
