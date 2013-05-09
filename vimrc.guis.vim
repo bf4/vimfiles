@@ -22,6 +22,9 @@ if version >= 702
 endif
 
 if has("gui_running")
+  "export TERM=screen-256color
+  "# or:
+  "export TERM=xterm-256color
   set t_Co=256
 
   if has("gui_mac") || has("gui_macvim")
@@ -32,12 +35,13 @@ if has("gui_running")
     nmap <leader>p "*p
     set guifont=Menlo:h14
     " colorscheme Dark2BF
-    colorscheme asmanian_bloodBF
+    "colorscheme asmanian_bloodBF
+    colorscheme detailed
     " Tell MacVim not to pop up a dialog on changed file vs. swp
     set go+=c
   else
     set guifont=Monospace\ Bold\ 12
-    colorscheme asmanian_bloodBF
+    colorscheme detailed
     " colorscheme railscasts
     " highlight Normal ctermfg=grey ctermbg=darkblue
   endif
@@ -46,7 +50,7 @@ else
   let g:CSApprox_loaded = 1
   " set background=dark
   " colorscheme solarized
-  colorscheme asmanian_bloodBF
+  colorscheme detailed
   " colorscheme railscasts
   " highlight Normal ctermfg=grey ctermbg=black
 endif
