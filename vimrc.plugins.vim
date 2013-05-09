@@ -18,7 +18,9 @@ Bundle 'gmarik/vundle'
 
 Bundle 'The-NERD-tree'
 autocmd vimenter * if !argc() | NERDTree | endif
-" Bundle 'kien/ctrlp.vim' " off for grb
+" see https://github.com/kien/ctrlp.vim
+" see http://kien.github.io/ctrlp.vim/
+Bundle 'kien/ctrlp.vim'
 " Create a file called root.dir in the root of your project - to make CtrlP work really nicely
 
 Bundle 'SuperTab'
@@ -53,10 +55,7 @@ Bundle 'bf4/vim-wombat256i'
 Bundle 'molokai'
 Bundle 'railscasts'
 " grb
-Bundle 'wincent/Command-T'
 Bundle 'tpope/vim-fugitive'
-" Bundle 'vim-scripts/L9'
-" Bundle 'clones/vim-fuzzyfinder'
 Bundle 'vim-ruby/vim-ruby'
 " Bundle 'tpope/vim-commentary'
 " Bundle 'tpope/vim-eunuch'
