@@ -95,7 +95,7 @@ set visualbell
 " }
  let g:syntastic_mode_map = { 'mode': 'active',
                                \ 'active_filetypes': ['ruby', 'php'],
-                               \ 'passive_filetypes': ['skhtml'] }
+                               \ 'passive_filetypes': ['skhtml','arb'] }
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'tw' set to 72,
 " 'cindent' is on in C files, etc.
