@@ -48,7 +48,6 @@ Bundle 'vim-scripts/tComment'
 " colorschemes
 " see https://code.google.com/p/vimcolorschemetest/
 " http://bytefluent.com/vivify/
-Bundle 'rking/vim-detailed'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'bf4/vim-wombat256i'

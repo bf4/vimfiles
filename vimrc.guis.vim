@@ -35,22 +35,19 @@ if has("gui_running")
     nmap <leader>p "*p
     set guifont=Menlo:h14
     " colorscheme Dark2BF
-    "colorscheme asmanian_bloodBF
-    colorscheme detailed
+    colorscheme asmanian_bloodBF
     " Tell MacVim not to pop up a dialog on changed file vs. swp
     set go+=c
   else
     set guifont=Monospace\ Bold\ 12
-    colorscheme detailed
-    " colorscheme railscasts
+    colorscheme railscasts
     " highlight Normal ctermfg=grey ctermbg=darkblue
   endif
 else
   "dont load csapprox if there is no gui support - silences an annoying warning
   let g:CSApprox_loaded = 1
-  " set background=dark
+  set background=dark
   " colorscheme solarized
-  colorscheme detailed
-  " colorscheme railscasts
+  colorscheme railscasts
   " highlight Normal ctermfg=grey ctermbg=black
 endif
