@@ -16,12 +16,39 @@ Bundle 'gmarik/vundle'
 "
 " see :h vundle for more details or wiki for FAQ
 
-Bundle 'The-NERD-tree'
-autocmd vimenter * if !argc() | NERDTree | endif
+Bundle 'thoughtbot/vim-rspec'
+" Rspec.vim mappings
+ map <Leader>t :call RunCurrentSpecFile()<CR>
+ map <Leader>s :call RunNearestSpec()<CR>
+ map <Leader>l :call RunLastSpec()<CR>
+" Overwrite g:rspec_command variable to execute a custom command.
+" let g:rspec_command = "!rspec --drb {spec}"
+" let g:rspec_command = "Dispatch zeus rspec {spec}"
+
+
+
+" Bundle 'The-NERD-tree'
+" autocmd vimenter * if !argc() | NERDTree | endif
 " see https://github.com/kien/ctrlp.vim
 " see http://kien.github.io/ctrlp.vim/
 Bundle 'kien/ctrlp.vim'
 " Create a file called root.dir in the root of your project - to make CtrlP work really nicely
+
+" autosave sessions
+" Use :Obsess (with optional file/directory name) to start recording to a
+" session file and :Obsess! to stop and throw it away. That's it. Load a
+" session in the usual manner: vim -S, or :source it.
+" invoke :mksession whenever the layout changes (in particular, on BufEnter),
+" so that even if Vim exits abnormally, I'm good to go.
+Bundle 'tpope/vim-obsession'
+
+" ysiW]  you surround inner WORD bracket -> [WORD]
+" ysip<C-t> you surround inner paragraph html tag <>
+Bundle 'tpope/vim-surround'
+" :Tabularize assignment
+" auto align all text
+Bundle 'godlygeek/tabular'
+
 
 Bundle 'SuperTab'
 " Bundle 'vim-coffee-script'
