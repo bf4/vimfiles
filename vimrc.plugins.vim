@@ -80,6 +80,10 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'bf4/vim-wombat256i'
 Bundle 'molokai'
 Bundle 'railscasts'
+" see https://github.com/chriskempson/base16-builder/blob/master/base16
+"     https://github.com/chriskempson/base16-builder/blob/master/base16
+" Bundle 'chriskempson/base16-vim'
+
 " grb
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-ruby/vim-ruby'

@@ -48,6 +48,7 @@ else
   let g:CSApprox_loaded = 1
   set background=dark
   " colorscheme solarized
-  colorscheme railscasts
+  " colorscheme railscasts
   " highlight Normal ctermfg=grey ctermbg=black
+  colorscheme grb3
 endif
