@@ -8,74 +8,311 @@ if version > 580
 	endif
 endif
 
-set t_Co=256
 let g:colors_name = "asmanian_bloodBF"
 
-hi IncSearch guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi WildMenu guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi SignColumn guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi SpecialComment guifg=#a06050 guibg=#181414 guisp=#181414 gui=italic ctermfg=131 ctermbg=234 cterm=NONE
-hi Typedef guifg=#705850 guibg=#080404 guisp=#080404 gui=italic ctermfg=95 ctermbg=232 cterm=NONE
-hi Title guifg=#ffffff guibg=#202020 guisp=#202020 gui=underline ctermfg=15 ctermbg=234 cterm=underline
+if !has("gui_running") && &t_Co != 88 && &t_Co != 256
+	finish
+endif
+
+" functions {{{
+" returns an approximate grey index for the given grey level
+fun <SID>grey_number(x)
+	if &t_Co == 88
+		if a:x < 23
+			return 0
+		elseif a:x < 69
+			return 1
+		elseif a:x < 103
+			return 2
+		elseif a:x < 127
+			return 3
+		elseif a:x < 150
+			return 4
+		elseif a:x < 173
+			return 5
+		elseif a:x < 196
+			return 6
+		elseif a:x < 219
+			return 7
+		elseif a:x < 243
+			return 8
+		else
+			return 9
+		endif
+	else
+		if a:x < 14
+			return 0
+		else
+			let l:n = (a:x - 8) / 10
+			let l:m = (a:x - 8) % 10
+			if l:m < 5
+				return l:n
+			else
+				return l:n + 1
+			endif
+		endif
+	endif
+endfun
+
+" returns the actual grey level represented by the grey index
+fun <SID>grey_level(n)
+	if &t_Co == 88
+		if a:n == 0
+			return 0
+		elseif a:n == 1
+			return 46
+		elseif a:n == 2
+			return 92
+		elseif a:n == 3
+			return 115
+		elseif a:n == 4
+			return 139
+		elseif a:n == 5
+			return 162
+		elseif a:n == 6
+			return 185
+		elseif a:n == 7
+			return 208
+		elseif a:n == 8
+			return 231
+		else
+			return 255
+		endif
+	else
+		if a:n == 0
+			return 0
+		else
+			return 8 + (a:n * 10)
+		endif
+	endif
+endfun
+
+" returns the palette index for the given grey index
+fun <SID>grey_color(n)
+	if &t_Co == 88
+		if a:n == 0
+			return 16
+		elseif a:n == 9
+			return 79
+		else
+			return 79 + a:n
+		endif
+	else
+		if a:n == 0
+			return 16
+		elseif a:n == 25
+			return 231
+		else
+			return 231 + a:n
+		endif
+	endif
+endfun
+
+" returns an approximate color index for the given color level
+fun <SID>rgb_number(x)
+	if &t_Co == 88
+		if a:x < 69
+			return 0
+		elseif a:x < 172
+			return 1
+		elseif a:x < 230
+			return 2
+		else
+			return 3
+		endif
+	else
+		if a:x < 75
+			return 0
+		else
+			let l:n = (a:x - 55) / 40
+			let l:m = (a:x - 55) % 40
+			if l:m < 20
+				return l:n
+			else
+				return l:n + 1
+			endif
+		endif
+	endif
+endfun
+
+" returns the actual color level for the given color index
+fun <SID>rgb_level(n)
+	if &t_Co == 88
+		if a:n == 0
+			return 0
+		elseif a:n == 1
+			return 139
+		elseif a:n == 2
+			return 205
+		else
+			return 255
+		endif
+	else
+		if a:n == 0
+			return 0
+		else
+			return 55 + (a:n * 40)
+		endif
+	endif
+endfun
+
+" returns the palette index for the given R/G/B color indices
+fun <SID>rgb_color(x, y, z)
+	if &t_Co == 88
+		return 16 + (a:x * 16) + (a:y * 4) + a:z
+	else
+		return 16 + (a:x * 36) + (a:y * 6) + a:z
+	endif
+endfun
+
+" returns the palette index to approximate the given R/G/B color levels
+fun <SID>color(r, g, b)
+	" get the closest grey
+	let l:gx = <SID>grey_number(a:r)
+	let l:gy = <SID>grey_number(a:g)
+	let l:gz = <SID>grey_number(a:b)
+
+	" get the closest color
+	let l:x = <SID>rgb_number(a:r)
+	let l:y = <SID>rgb_number(a:g)
+	let l:z = <SID>rgb_number(a:b)
+
+	if l:gx == l:gy && l:gy == l:gz
+		" there are two possibilities
+		let l:dgr = <SID>grey_level(l:gx) - a:r
+		let l:dgg = <SID>grey_level(l:gy) - a:g
+		let l:dgb = <SID>grey_level(l:gz) - a:b
+		let l:dgrey = (l:dgr * l:dgr) + (l:dgg * l:dgg) + (l:dgb * l:dgb)
+		let l:dr = <SID>rgb_level(l:gx) - a:r
+		let l:dg = <SID>rgb_level(l:gy) - a:g
+		let l:db = <SID>rgb_level(l:gz) - a:b
+		let l:drgb = (l:dr * l:dr) + (l:dg * l:dg) + (l:db * l:db)
+		if l:dgrey < l:drgb
+			" use the grey
+			return <SID>grey_color(l:gx)
+		else
+			" use the color
+			return <SID>rgb_color(l:x, l:y, l:z)
+		endif
+	else
+		" only one possibility
+		return <SID>rgb_color(l:x, l:y, l:z)
+	endif
+endfun
+
+" returns the palette index to approximate the 'rrggbb' hex string
+fun <SID>rgb(rgb)
+	let l:r = ("0x" . strpart(a:rgb, 0, 2)) + 0
+	let l:g = ("0x" . strpart(a:rgb, 2, 2)) + 0
+	let l:b = ("0x" . strpart(a:rgb, 4, 2)) + 0
+	return <SID>color(l:r, l:g, l:b)
+endfun
+
+" sets the highlighting for the given group
+fun <SID>X(group, fg, bg, attr)
+	if a:fg != ""
+		exec "hi ".a:group." guifg=#".a:fg." ctermfg=".<SID>rgb(a:fg)
+	endif
+	if a:bg != ""
+		exec "hi ".a:group." guibg=#".a:bg." guisp=#".a:bg." ctermbg=".<SID>rgb(a:bg)
+	endif
+	if a:attr != ""
+		if a:attr == 'italic'
+			exec "hi ".a:group." gui=".a:attr." cterm=none"
+		else
+			exec "hi ".a:group." gui=".a:attr." cterm=".a:attr
+		endif
+	endif
+endfun
+" }}}
+
+call <SID>X("IncSearch","e2e4e5","","none")
+call <SID>X("WildMenu","e2e4e5","","none")
+call <SID>X("SignColumn","e2e4e5","","none")
+call <SID>X("SpecialComment","a06050","181414","italic")
+call <SID>X("Typedef","705850","080404","italic")
+call <SID>X("Title","ffffff","202020","underline")
 hi Folded guifg=#484040 guibg=#080404 guisp=#080404 gui=italic ctermfg=238 ctermbg=232 cterm=NONE
-hi PreCondit guifg=#a090a0 guibg=#080404 guisp=#080404 gui=italic ctermfg=247 ctermbg=232 cterm=NONE
-hi Include guifg=#a090a0 guibg=#080404 guisp=#080404 gui=italic ctermfg=247 ctermbg=232 cterm=NONE
-hi Float guifg=#60d060 guibg=#080404 guisp=#080404 gui=NONE ctermfg=77 ctermbg=232 cterm=NONE
-hi StatusLineNC guifg=#503830 guibg=#200800 guisp=#200800 gui=NONE ctermfg=239 ctermbg=52 cterm=NONE
+" call <SID>X("Folded","484040","080404","italic,bold")
+call <SID>X("PreCondit","a090a0","080404","italic")
+call <SID>X("Include","a090a0","080404","italic")
+call <SID>X("Float","60d060","080404","none")
+call <SID>X("StatusLineNC","503830","200800","none")
 hi CTagsMember guifg=#e2e4e5 guibg=NONE guisp=NONE gui=underline ctermfg=254 ctermbg=NONE cterm=underline
+" call <SID>X("CTagsMember","e2e4e5","","none")
 hi NonText guifg=#9e6e6e guibg=#181414 guisp=#181414 gui=NONE ctermfg=95 ctermbg=234 cterm=NONE
+" call <SID>X("NonText","b4b0b0","181414","none")
 hi CTagsGlobalConstant guifg=#e2e4e5 guibg=NONE guisp=NONE gui=underline ctermfg=254 ctermbg=NONE cterm=underline
+" call <SID>X("CTagsGlobalConstant","e2e4e5","","none")
 hi DiffText guifg=#7db0ad guibg=#080404 guisp=#080404 gui=NONE ctermfg=109 ctermbg=232 cterm=NONE
+" call <SID>X("DiffText","60d060","080404","none")
 hi ErrorMsg guifg=#a6a3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=248 ctermbg=NONE cterm=NONE
+" call <SID>X("ErrorMsg","b4b0b0","","none")
 hi Ignore guifg=#79a1b5 guibg=NONE guisp=NONE gui=NONE ctermfg=109 ctermbg=NONE cterm=NONE
-hi Debug guifg=#a06050 guibg=#181414 guisp=#181414 gui=italic ctermfg=131 ctermbg=234 cterm=NONE
-hi PMenuSbar guifg=#503830 guibg=#181414 guisp=#181414 gui=NONE ctermfg=239 ctermbg=234 cterm=NONE
-hi Identifier guifg=#c0b060 guibg=#080404 guisp=#080404 gui=italic ctermfg=143 ctermbg=232 cterm=NONE
-hi SpecialChar guifg=#a06050 guibg=#181414 guisp=#181414 gui=italic ctermfg=131 ctermbg=234 cterm=NONE
-hi Conditional guifg=#609050 guibg=#080404 guisp=#080404 gui=underline ctermfg=65 ctermbg=232 cterm=underline
-hi StorageClass guifg=#705850 guibg=#080404 guisp=#080404 gui=italic ctermfg=95 ctermbg=232 cterm=NONE
+" call <SID>X("Ignore","e2e4e5","","none")
+call <SID>X("Debug","a06050","181414","italic")
+call <SID>X("PMenuSbar","503830","181414","none")
+call <SID>X("Identifier","c0b060","080404","italic")
+call <SID>X("SpecialChar","a06050","181414","italic")
+call <SID>X("Conditional","609050","080404","underline")
+call <SID>X("StorageClass","705850","080404","italic")
 hi Todo guifg=#686460 guibg=#080404 guisp=#080404 gui=italic ctermfg=242 ctermbg=232 cterm=NONE
-hi Special guifg=#a06050 guibg=#181414 guisp=#181414 gui=italic ctermfg=131 ctermbg=234 cterm=NONE
-hi LineNr guifg=#848070 guibg=#181414 guisp=#181414 gui=NONE ctermfg=101 ctermbg=234 cterm=NONE
-hi StatusLine guifg=#f8e0d0 guibg=#301810 guisp=#301810 gui=bold ctermfg=224 ctermbg=52 cterm=bold
+" call <SID>X("Todo","686460","080404","italic,underline")
+call <SID>X("Special","a06050","181414","italic")
+call <SID>X("LineNr","848070","181414","none")
+call <SID>X("StatusLine","f8e0d0","301810","bold")
 hi Normal guifg=#a6a3a3 guibg=#080404 guisp=#080404 gui=NONE ctermfg=248 ctermbg=232 cterm=NONE
-hi Label guifg=#705850 guibg=#080404 guisp=#080404 gui=italic ctermfg=95 ctermbg=232 cterm=NONE
+" call <SID>X("Normal","b4b0b0","080404","none")
+call <SID>X("Label","705850","080404","italic")
 hi CTagsImport guifg=#6c9fb8 guibg=NONE guisp=NONE gui=underline ctermfg=67 ctermbg=NONE cterm=underline
-hi PMenuSel guifg=#f8e0d0 guibg=#301810 guisp=#301810 gui=NONE ctermfg=224 ctermbg=52 cterm=NONE
-hi Search guifg=#000000 guibg=#f0f000 guisp=#f0f000 gui=italic ctermfg=NONE ctermbg=11 cterm=NONE
+" call <SID>X("CTagsImport","e2e4e5","","none")
+call <SID>X("PMenuSel","f8e0d0","301810","none")
+call <SID>X("Search","000000","f0f000","italic,underline")
 hi CTagsGlobalVariable guifg=#e2e4e5 guibg=NONE guisp=NONE gui=underline ctermfg=254 ctermbg=NONE cterm=underline
+" call <SID>X("CTagsGlobalVariable","e2e4e5","","none")
 hi Delimiter guifg=#a06050 guibg=#181414 guisp=#181414 gui=italic ctermfg=131 ctermbg=234 cterm=NONE
+" call <SID>X("Delimiter","a06050","181414","italic")
 hi Statement guifg=#9cb0e6 guibg=#080404 guisp=#080404 gui=underline ctermfg=110 ctermbg=232 cterm=underline
-hi SpellRare guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi EnumerationValue guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("Statement","506090","080404","underline")
+call <SID>X("SpellRare","e2e4e5","","none")
+call <SID>X("EnumerationValue","e2e4e5","","none")
 hi Comment guifg=#9e856b guibg=#080404 guisp=#080404 gui=italic ctermfg=137 ctermbg=232 cterm=NONE
-hi Character guifg=#60d060 guibg=#080404 guisp=#080404 gui=NONE ctermfg=77 ctermbg=232 cterm=NONE
-hi TabLineSel guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi Number guifg=#60d060 guibg=#080404 guisp=#080404 gui=NONE ctermfg=77 ctermbg=232 cterm=NONE
-hi Boolean guifg=#506090 guibg=#080404 guisp=#080404 gui=underline ctermfg=60 ctermbg=232 cterm=underline
-hi Operator guifg=#705850 guibg=#080404 guisp=#080404 gui=italic ctermfg=95 ctermbg=232 cterm=NONE
-hi CursorLine guifg=#f4f0f0 guibg=#201c1c guisp=#201c1c gui=NONE ctermfg=255 ctermbg=234 cterm=NONE
-hi Union guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi TabLineFill guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("Comment","686460","080404","none")
+call <SID>X("Character","60d060","080404","none")
+call <SID>X("TabLineSel","e2e4e5","","none")
+call <SID>X("Number","60d060","080404","none")
+call <SID>X("Boolean","506090","080404","underline")
+call <SID>X("Operator","705850","080404","italic")
+call <SID>X("CursorLine","f4f0f0","201c1c","none")
+call <SID>X("Union","e2e4e5","","none")
+call <SID>X("TabLineFill","e2e4e5","","none")
 hi Question guifg=#a6a3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=248 ctermbg=NONE cterm=NONE
-hi WarningMsg guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi VisualNOS guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("Question","b4b0b0","","none")
+call <SID>X("WarningMsg","e2e4e5","","none")
+call <SID>X("VisualNOS","e2e4e5","","none")
 hi DiffDelete guifg=#853939 guibg=NONE guisp=NONE gui=NONE ctermfg=95 ctermbg=NONE cterm=NONE
+" call <SID>X("DiffDelete","b4b0b0","","none")
 hi ModeMsg guifg=#a6a3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=248 ctermbg=NONE cterm=NONE
-hi CursorColumn guifg=#f4f0f0 guibg=#201c1c guisp=#201c1c gui=NONE ctermfg=255 ctermbg=234 cterm=NONE
-hi Define guifg=#607080 guibg=#080404 guisp=#080404 gui=italic ctermfg=60 ctermbg=232 cterm=NONE
-hi Function guifg=#60b050 guibg=#080404 guisp=#080404 gui=italic ctermfg=71 ctermbg=232 cterm=NONE
+" call <SID>X("ModeMsg","b4b0b0","","none")
+call <SID>X("CursorColumn","f4f0f0","201c1c","none")
+call <SID>X("Define","607080","080404","italic")
+call <SID>X("Function","60b050","080404","italic")
 hi FoldColumn guifg=#75909e guibg=NONE guisp=NONE gui=NONE ctermfg=109 ctermbg=NONE cterm=NONE
+" call <SID>X("FoldColumn","e2e4e5","","none")
 hi PreProc guifg=#a090a0 guibg=#5e2b2b guisp=#5e2b2b gui=italic ctermfg=247 ctermbg=52 cterm=NONE
+" call <SID>X("PreProc","a090a0","080404","italic")
 hi EnumerationName guifg=#e2e4e5 guibg=NONE guisp=NONE gui=underline ctermfg=254 ctermbg=NONE cterm=underline
-hi Visual guifg=#e2e4e5 guibg=#282020 guisp=#282020 gui=NONE ctermfg=254 ctermbg=235 cterm=NONE
-hi MoreMsg guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi SpellCap guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi VertSplit guifg=#200800 guibg=#301810 guisp=#301810 gui=NONE ctermfg=52 ctermbg=52 cterm=NONE
-hi Exception guifg=#903020 guibg=#080404 guisp=#080404 gui=underline ctermfg=88 ctermbg=232 cterm=underline
-hi Keyword guifg=#705850 guibg=#080404 guisp=#080404 gui=italic ctermfg=95 ctermbg=232 cterm=NONE
+" call <SID>X("EnumerationName","e2e4e5","","none")
+call <SID>X("Visual","e2e4e5","282020","none")
+call <SID>X("MoreMsg","e2e4e5","","none")
+call <SID>X("SpellCap","e2e4e5","","none")
+call <SID>X("VertSplit","200800","301810","none")
+call <SID>X("Exception","903020","080404","underline")
+call <SID>X("Keyword","705850","080404","italic")
 hi Type guifg=#945f4d guibg=#34384d guisp=#34384d gui=italic ctermfg=137 ctermbg=239 cterm=NONE
+" call <SID>X("Type","705850","080404","italic")
 hi DiffChange guifg=#a1a83e guibg=NONE guisp=NONE gui=NONE ctermfg=143 ctermbg=NONE cterm=NONE
+" call <SID>X("DiffChange","b4b0b0","","none")
 " http://vim.wikia.com/wiki/Change_the_gvim_mouse_arrow_cursor
 " http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
 " setting blinking cursor color and character highlight as bold
@@ -84,30 +321,51 @@ hi DiffChange guifg=#a1a83e guibg=NONE guisp=NONE gui=NONE ctermfg=143 ctermbg=N
 " blinking off option: http://www.miek.nl/s/49240b66f0/ set
 set gcr=a:blinkwait0,a:block-cursor
 hi Cursor guifg=#64de85 guibg=#bdb857 guisp=#bdb857 gui=bold ctermfg=78 ctermbg=143 cterm=bold
-hi SpellLocal guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("Cursor","b4b0b0","","none")
+call <SID>X("SpellLocal","e2e4e5","","none")
 hi Error guifg=#e2e4e5 guibg=#854d50 guisp=#854d50 gui=NONE ctermfg=254 ctermbg=95 cterm=NONE
-hi PMenu guifg=#503830 guibg=#200800 guisp=#200800 gui=NONE ctermfg=239 ctermbg=52 cterm=NONE
-hi SpecialKey guifg=#b4b0b0 guibg=#282424 guisp=#282424 gui=bold ctermfg=249 ctermbg=235 cterm=bold
-hi Constant guifg=#60d060 guibg=#080404 guisp=#080404 gui=NONE ctermfg=77 ctermbg=232 cterm=NONE
-hi DefinedName guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi Tag guifg=#a06050 guibg=#181414 guisp=#181414 gui=italic ctermfg=131 ctermbg=234 cterm=NONE
-hi String guifg=#a06050 guibg=#080404 guisp=#080404 gui=italic ctermfg=131 ctermbg=232 cterm=NONE
-hi PMenuThumb guifg=#503830 guibg=#848070 guisp=#848070 gui=NONE ctermfg=239 ctermbg=101 cterm=NONE
-hi MatchParen guifg=#ffffff guibg=#904030 guisp=#904030 gui=NONE ctermfg=15 ctermbg=88 cterm=NONE
+" call <SID>X("Error","e2e4e5","","none")
+call <SID>X("PMenu","503830","200800","none")
+call <SID>X("SpecialKey","b4b0b0","282424","bold")
+call <SID>X("Constant","60d060","080404","none")
+call <SID>X("DefinedName","e2e4e5","","none")
+call <SID>X("Tag","a06050","181414","italic")
+call <SID>X("String","a06050","080404","italic")
+call <SID>X("PMenuThumb","503830","848070","none")
+call <SID>X("MatchParen","ffffff","904030","none")
 hi LocalVariable guifg=#8fbacf guibg=NONE guisp=NONE gui=NONE ctermfg=110 ctermbg=NONE cterm=NONE
-hi Repeat guifg=#906050 guibg=#080404 guisp=#080404 gui=underline ctermfg=95 ctermbg=232 cterm=underline
-hi SpellBad guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("LocalVariable","e2e4e5","","none")
+call <SID>X("Repeat","906050","080404","underline")
+call <SID>X("SpellBad","e2e4e5","","none")
 hi CTagsClass guifg=#5e7f8f guibg=NONE guisp=NONE gui=underline ctermfg=66 ctermbg=NONE cterm=underline
-hi Directory guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
-hi Structure guifg=#705850 guibg=#080404 guisp=#080404 gui=italic ctermfg=95 ctermbg=232 cterm=NONE
-hi Macro guifg=#a090a0 guibg=#080404 guisp=#080404 gui=italic ctermfg=247 ctermbg=232 cterm=NONE
-hi Underlined guifg=#b4b0b0 guibg=#080404 guisp=#080404 gui=underline ctermfg=249 ctermbg=232 cterm=underline
+" call <SID>X("CTagsClass","e2e4e5","","none")
+call <SID>X("Directory","e2e4e5","","none")
+call <SID>X("Structure","705850","080404","italic")
+call <SID>X("Macro","a090a0","080404","italic")
+call <SID>X("Underlined","b4b0b0","080404","underline")
 hi DiffAdd guifg=#4b8060 guibg=NONE guisp=NONE gui=NONE ctermfg=65 ctermbg=NONE cterm=NONE
-hi TabLine guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("DiffAdd","b4b0b0","","none")
+call <SID>X("TabLine","e2e4e5","","none")
 hi pythonbuiltin guifg=#a6a3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=248 ctermbg=NONE cterm=NONE
-hi phpstringdouble guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("pythonBuiltin","b4b0b0","","none")
+call <SID>X("phpStringDouble","e2e4e5","","none")
 hi htmltagname guifg=#c28787 guibg=NONE guisp=NONE gui=NONE ctermfg=138 ctermbg=NONE cterm=NONE
+" call <SID>X("htmlTagName","b4b0b0","","none")
 hi javascriptstrings guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("JavaScriptStrings","e2e4e5","","none")
 hi htmlstring guifg=#856d6d guibg=NONE guisp=NONE gui=NONE ctermfg=95 ctermbg=NONE cterm=NONE
+" call <SID>X("htmlString","b4b0b0","","none")
 hi phpstringsingle guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
+" call <SID>X("phpStringSingle","e2e4e5","","none")
 "hi clear -- no settings --
+" delete functions {{{
+delf <SID>X
+delf <SID>rgb
+delf <SID>color
+delf <SID>rgb_color
+delf <SID>rgb_level
+delf <SID>rgb_number
+delf <SID>grey_color
+delf <SID>grey_level
+delf <SID>grey_number
+" }}}
