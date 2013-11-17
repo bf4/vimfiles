@@ -271,9 +271,11 @@ endif
 call <SID>X("LineNr","848070","181414","none")
 call <SID>X("Visual","e2e4e5","282020","none")
 
+" Invisible Characters
+" ------------------
 hi NonText guifg=#9e6e6e guibg=#181414 guisp=#181414 gui=NONE ctermfg=95 ctermbg=234 cterm=NONE
 " call <SID>X("NonText","b4b0b0","181414","none")
-
+call <SID>X("SpecialKey","b4b0b0","282424","bold")
 
 " Folds
 " -----
@@ -284,8 +286,6 @@ hi Folded guifg=#484040 guibg=#080404 guisp=#080404 gui=italic ctermfg=238 cterm
 call <SID>X("VertSplit","200800","301810","none")
 call <SID>X("StatusLine","f8e0d0","301810","bold")
 call <SID>X("StatusLineNC","503830","200800","none")
-
-call <SID>X("SpecialKey","b4b0b0","282424","bold")
 
 hi Ignore guifg=#79a1b5 guibg=NONE guisp=NONE gui=NONE ctermfg=109 ctermbg=NONE cterm=NONE
 " call <SID>X("Ignore","e2e4e5","","none")
@@ -306,6 +306,7 @@ call <SID>X("Operator","705850","080404","italic")
 " ----
 " directory names and other special names in listings
 call <SID>X("Directory","e2e4e5","","none")
+
 " Popup Menu
 " ----------
 " normal item in popup
@@ -316,6 +317,7 @@ call <SID>X("PMenuSel","f8e0d0","301810","none")
 call <SID>X("PMenuSbar","503830","181414","none")
 " thumb of the scrollbar in the popup
 call <SID>X("PMenuThumb","503830","848070","none")
+
 "rubyComment
 hi Comment guifg=#9e856b guibg=#080404 guisp=#080404 gui=italic ctermfg=137 ctermbg=232 cterm=NONE
 " call <SID>X("Comment","686460","080404","none")
@@ -463,30 +465,33 @@ call <SID>X("DefinedName","e2e4e5","","none")
 "hi link rubyArrayDelimiter    Special  " [ , , ]
 "rubyCurlyBlock  { , , }
 
-hi link rubyClass             Keyword
-hi link rubyModule            Keyword
-hi link rubyKeyword           Keyword
-hi link rubyOperator          Operator
-hi link rubyIdentifier        Identifier
-hi link rubyInstanceVariable  Identifier
-hi link rubyGlobalVariable    Identifier
-hi link rubyClassVariable     Identifier
-hi link rubyConstant          Type
-
-" Special for XML
-hi link xmlTag          Keyword
-hi link xmlTagName      Conditional
-hi link xmlEndTag       Identifier
-
-
-" Special for HTML
-hi link htmlTag         Keyword
-hi link htmlTagName     Conditional
-hi link htmlEndTag      Identifier
-
-
-" Special for Javascript
-hi link javaScriptNumber      Number
+" hi link rubyClass             Keyword
+" hi link rubyModule            Keyword
+" hi link rubyKeyword           Keyword
+" hi link rubyOperator          Operator
+" hi link rubyIdentifier        Identifier
+" hi link rubyInstanceVariable  Identifier
+" hi link rubyGlobalVariable    Identifier
+" hi link rubyClassVariable     Identifier
+" hi link rubyConstant          Type
+"
+" " Special for XML
+" hi link xmlTag          Keyword
+" hi link xmlTagName      Conditional
+" hi link xmlEndTag       Identifier
+"
+"
+" " Special for HTML
+" hi link htmlTag         Keyword
+" hi link htmlTagName     Conditional
+" hi link htmlEndTag      Identifier
+"
+"
+" " Special for Javascript
+" hi link javaScriptNumber      Number
+" hi link htmlTag              xmlTag
+" hi link htmlTagName          xmlTagName
+" hi link htmlEndTag           xmlEndTag
 
 
 hi pythonbuiltin guifg=#a6a3a3 guibg=NONE guisp=NONE gui=NONE ctermfg=248 ctermbg=NONE cterm=NONE
@@ -500,9 +505,6 @@ hi htmlstring guifg=#856d6d guibg=NONE guisp=NONE gui=NONE ctermfg=95 ctermbg=NO
 " call <SID>X("htmlString","b4b0b0","","none")
 hi phpstringsingle guifg=#e2e4e5 guibg=NONE guisp=NONE gui=NONE ctermfg=254 ctermbg=NONE cterm=NONE
 " call <SID>X("phpStringSingle","e2e4e5","","none")
-hi link htmlTag              xmlTag
-hi link htmlTagName          xmlTagName
-hi link htmlEndTag           xmlEndTag
 "hi clear -- no settings --
 " delete functions {{{
 delf <SID>X
