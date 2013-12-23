@@ -50,5 +50,6 @@ else
   " colorscheme solarized
   " colorscheme railscasts
   " highlight Normal ctermfg=grey ctermbg=black
-  colorscheme grb3
+  " colorscheme grb3
+  colorscheme asmanian_bloodBF
 endif
