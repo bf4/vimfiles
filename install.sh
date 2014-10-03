@@ -13,7 +13,7 @@ mkdir -p bundle
 # required to add vundler to bundle/vundle
 git submodule update --init
 # install vundle and have it install the bundles
-# git clone https://github.com/gmarik/vundle.git bundle/vundle
+git clone https://github.com/gmarik/vundle.git bundle/vundle
 vim +BundleInstall +qall
 
 # install ctags
