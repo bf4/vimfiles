@@ -44,6 +44,8 @@ nnoremap <c-l> <c-w>l
 "key mapping for window navigation
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
+" Load tags from current or any parent path
+set tags=tags;/
 
 " ================ Cleaning up ============================
 " from http://www.bestofvim.com/tip/trailing-whitespace/
