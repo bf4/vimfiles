@@ -1,4 +1,3 @@
-
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -27,32 +26,12 @@ Bundle 'thoughtbot/vim-rspec'
 
 
 
-" Bundle 'The-NERD-tree'
-" autocmd vimenter * if !argc() | NERDTree | endif
 " see https://github.com/kien/ctrlp.vim
 " see http://kien.github.io/ctrlp.vim/
 Bundle 'kien/ctrlp.vim'
 " Create a file called root.dir in the root of your project - to make CtrlP work really nicely
 
-" autosave sessions
-" Use :Obsess (with optional file/directory name) to start recording to a
-" session file and :Obsess! to stop and throw it away. That's it. Load a
-" session in the usual manner: vim -S, or :source it.
-" invoke :mksession whenever the layout changes (in particular, on BufEnter),
-" so that even if Vim exits abnormally, I'm good to go.
-Bundle 'tpope/vim-obsession'
-
-" ysiW]  you surround inner WORD bracket -> [WORD]
-" ysip<C-t> you surround inner paragraph html tag <>
-Bundle 'tpope/vim-surround'
-" :Tabularize assignment
-" auto align all text
-Bundle 'godlygeek/tabular'
-
-
-Bundle 'SuperTab'
 Bundle 'vim-coffee-script'
-" Bundle 'ack.vim'
 Bundle 'tpope/vim-rails'
 
 " The following work on normal and visual modes:
@@ -66,25 +45,24 @@ Bundle 'plasticboy/vim-markdown'
 let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby','javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml']
 " let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_initial_foldlevel=100
-" Bundle 'vim-bundler'
-" Bundle 'Tagbar'
-" Bundle 'haml.zip'
+" https://github.com/tpope/vim-endwise
+" wisely
+"  add "end" in ruby,
+"  endfunction/endif/more in vim script,
+"  etc
 Bundle 'endwise.vim'
-" Bundle 'IndexedSearch'
-" Bundle 'bufexplorer.zip'
-" Bundle 'Gundo'
+" https://github.com/vim-scripts/tComment
+" As operator (the prefix can be customized via g:tcommentMapLeaderOp1
+" and g:tcommentMapLeaderOp2):
+"
+"     gc{motion}   :: Toggle comments (for small comments within one line
+"                     the &filetype_inline style will be used, if
+"                     defined)
+"     gcc          :: Toggle comment for the current line
+"     gC{motion}   :: Comment region
+"     gCc          :: Comment the current line
 Bundle 'vim-scripts/tComment'
-" Bundle 'chrismetcalf/vim-yankring'
-" git update-server-info
-" Bundle 'scrooloose/syntastic'
- let g:syntastic_mode_map = { 'mode': 'active',
-                               \ 'active_filetypes': ['ruby', 'php'],
-                               \ 'passive_filetypes': ['skhtml','arb'] }
 
-
-""  tmux
-" Bundle 'jgdavey/tslime.vim'
-" Bundle 'jgdavey/vim-turbux'
 
 " colorschemes
 " see https://code.google.com/p/vimcolorschemetest/
@@ -101,9 +79,6 @@ Bundle 'railscasts'
 " grb
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-ruby/vim-ruby'
-" Bundle 'tpope/vim-commentary'
-" Bundle 'tpope/vim-eunuch'
-" Bundle 'tsaleh/vim-matchit'
 filetype plugin indent on     " required!
  "
  " see :h vundle for more details or wiki for FAQ
