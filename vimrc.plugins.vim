@@ -51,9 +51,21 @@ Bundle 'godlygeek/tabular'
 
 
 Bundle 'SuperTab'
-" Bundle 'vim-coffee-script'
+Bundle 'vim-coffee-script'
 " Bundle 'ack.vim'
-" Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rails'
+
+" The following work on normal and visual modes:
+" ]]: go to next header.
+" [[: go to previous header. Contrast with ]c.
+" ][: go to next sibling header if any.
+" []: go to previous sibling header if any.
+" ]c: go to Current header.
+" ]u: go to parent header (Up).
+Bundle 'plasticboy/vim-markdown'
+let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby','javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml']
+" let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_initial_foldlevel=100
 " Bundle 'vim-bundler'
 " Bundle 'Tagbar'
 " Bundle 'haml.zip'
