@@ -184,3 +184,21 @@ map Y y$
 " Insert the current time
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
+
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+silent! nnoremap <silent> <Leader>l :set list!<CR>
+silent! nnoremap <silent> <Leader>] :nohls<CR>
+
+"mapping for command key to map navigation thru display lines instead
+"of just numbered lines
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^

@@ -1,7 +1,5 @@
 "" . folding {{{
 "
-" set foldlevelstart=0
-
 " Space to toggle folds.
 nnoremap <Enter> za
 vnoremap <Enter> za
@@ -17,10 +15,40 @@ nnoremap <leader>z zMzvzz
 "turn on syntax highlighting
 syntax on
 
-" Folding stuff """"""""""""""""""""""""""""""
-set foldmethod=syntax " use the syntax file to create folds
-set foldlevel=1000000 " start not folded
+set encoding=utf-8
 
+
+" ================ Indentation ======================
+
+set autoindent
+set smartindent
+set smarttab
+set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
+set softtabstop=2
+set expandtab                   " use spaces, not tabs (optional)
+
+
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin on
+filetype indent on
+
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
+
+set nowrap       "Don't wrap lines
+set linebreak    "Wrap lines at convenient points
+
+" ================ Folds ============================
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
+set nofoldenable        "dont fold by default
+
+" set foldmethod=syntax " use the syntax file to create folds
+" set foldlevel=1000000 " start not folded
 " Set a nicer foldtext function via http://vim.wikia.com/wiki/Customize_text_for_closed_folds
 set foldtext=MyFoldText()
 function! MyFoldText()
@@ -57,4 +85,3 @@ function! MyFoldText()
   return sub . info
 endfunction
 """"""""""""""""""""""""""""""""""""""""""""""
-

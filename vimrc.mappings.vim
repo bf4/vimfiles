@@ -1,46 +1,11 @@
+" Change leader to a comma because the backslash is too far away
+" That means all \x commands turn into ,x
+" The mapleader has to be set before vundle starts loading all 
+" the plugins.
 let mapleader=","
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MISC KEY MAPS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>y "*y
-" Move around splits with <c-hjkl>
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
-" Can't be bothered to understand ESC vs <c-c> in insert mode
-imap <c-c> <esc>
-" Clear the search buffer when hitting return
-function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
-endfunction
-call MapCR()
-nnoremap <leader><leader> <c-^>
 
-silent! nnoremap <silent> <Leader>l :set list!<CR>
-silent! nnoremap <silent> <Leader>] :nohls<CR>
+" ================ Copying, and Pasting  ============================
 
-silent! nmap <silent> <C-s> :w<CR>
-
-"key mapping for window navigation
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-
-"mapping for command key to map navigation thru display lines instead
-"of just numbered lines
-vmap <D-j> gj
-vmap <D-k> gk
-vmap <D-4> g$
-vmap <D-6> g^
-vmap <D-0> g^
-nmap <D-j> gj
-nmap <D-k> gk
-nmap <D-4> g$
-nmap <D-6> g^
-nmap <D-0> g^
-
-""" other
 " from http://www.drbunsen.org/text-triumvirate.html
 " Yank text to the OS X clipboard
 noremap <leader>y "*y
@@ -49,6 +14,38 @@ noremap <leader>yy "*Y
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
+" ================ Colors and Highlighting ============================
+" http://yanpritzker.com/2012/04/17/how-to-change-vim-syntax-colors-that-are-annoying-you/
+" With your cursor over the thing that’s highlighted in a bad color, hit the <leader>hi
+" Note the info displayed in the status line, it will look something like:
+"   hi<rspecGroupMethods> trans<rspecGroupMethods> lo<Todo> FG:#d33682
+" The leftmost one is the one with highest precedence, and the one we want to override.
+" Look at the list of available colors using :hi.
+" Find the group you like
+" Let’s say the one I like is Identifier, and the group I’m modifying is MatchParen. I would link them like this:
+"  hi! link rspecGroupMethods Type
+map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+
+" Clear the search buffer when hitting return
+function! MapCR()
+  nnoremap <cr> :nohlsearch<cr>
+endfunction
+call MapCR()
+
+" ================ Moving around ============================
+
+" switch between the currently open buffer and the previous one
+nnoremap <leader><leader> <c-^>
+" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+"key mapping for window navigation
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+" ================ Cleaning up ============================
 " from http://www.bestofvim.com/tip/trailing-whitespace/
 " trailing whitespace will be highlighted automatically
 " match ErrorMsg '\s\+$'
@@ -70,6 +67,9 @@ nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 " autocmd FileType ruby,haml,erb autocmd FilterWritePre  * :call TrimWhiteSpace()
 " autocmd FileType ruby,haml,erb autocmd BufWritePre     * :call TrimWhiteSpace()
 
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -90,3 +90,19 @@ inoremap <s-tab> <c-n>
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" File operations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" double percentage sign in command mode is expanded
+" to directory of current file - http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" Save with <C-s>
+silent! nmap <silent> <C-s> :w<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MISC KEY MAPS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Can't be bothered to understand ESC vs <c-c> in insert mode
+imap <c-c> <esc>

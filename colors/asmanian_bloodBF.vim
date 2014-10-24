@@ -259,8 +259,6 @@ hi Cursor guifg=#64de85 guibg=#bdb857 guisp=#bdb857 gui=bold ctermfg=78 ctermbg=
 " setting blinking cursor color and character highlight as bold
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'guicursor'
 " http://vim.wikia.com/wiki/Configuring_the_cursor
-" blinking off option: http://www.miek.nl/s/49240b66f0/ set
-" set gcr=a:blinkwait0,a:block-cursor
 if version >= 700 " Vim 7.x specific colors
   call <SID>X("CursorLine","f4f0f0","201c1c","none")
   call <SID>X("CursorColumn","f4f0f0","201c1c","none")

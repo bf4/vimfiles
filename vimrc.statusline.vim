@@ -6,6 +6,7 @@
 "
 " Status line """""""""""""""""""""""""""""""""""""
 set laststatus=2  " Always show the status line
+
 set statusline=%!SetStatusLine()
 
 let g:showFullPathInStatusLine = 0
