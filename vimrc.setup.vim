@@ -1,100 +1,87 @@
-if has("win32") || has("win64")
-  set directory=$TMP
-else
-  " ending with the double slash includes the full path in the filename
-  " of the swap files to avoid conflicts
-  set directory=~/.vim/tmp//
-  " _ backups {{{
-  " set undodir=~/.vim/undodir//     " undo files
-  set backupdir=~/.vim/tmp/backup// " backups
-  " set directory=~/.vim/tmp/swap//   " swap files
-  set backup
-  " set noswapfile
-  " " _ }}}
-  " the below breaks vi from the cli for some reason
-  " set backspace+=start,eol,indent
-  " set backspace=indent,eol,start
-  " Set up persistent undo for versions of vim that support it
-  if v:version >= 703
-    set undodir=~/.vim/undodir
-    set undofile
-    set undolevels=1000
-    set undoreload=1000
-  endif
-end
-set history=1000
-set incsearch
-set laststatus=2
-set list
-set encoding=utf-8
-" Disable the macvim toolbar
-" set guioptions-=T
+call pathogen#runtime_append_all_bundles()
 
-" set nobackup
-" Having this set will not leave any additional file(s) around after having closed VIM. This is what most people might be looking to have set.
+" let vim edit a crontab successfully, no error
+" crontab: temp file must be edited in place
+" via comment on  http://drawohara.com/post/6344279/crontab-temp-file-must-be-edited-in-place
+au FileType crontab set nobackup nowritebackup
 
-" set nowritebackup
-"I do not set this one. The default is :set writebackup This will keep a backup file while the file is being worked. Once VIM is closed; the backup will vanish.
-
-" set noswapfile
-" From the VIM help file.
-" - Don’t use this for big files.
-" - Recovery will be impossible!
-" In essence; if security is a concern, use noswapfile. Keep in mind that this option will keep everything in memory.
-"
-" don't require me to press enter when redrawing the screen
-" set shortmess+=A
-
-"necessary on some Linux distros for pathogen to properly load bundles
-filetype on
-filetype off
-
-"load ftplugins and indent files
-filetype plugin on
-filetype indent on
-
-
-"Show line numbers
-set number
-
-"hide buffers when not displayed
-set hidden
-" use improved vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC EDITING CONFIGURATION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
-
-
-set tabstop=2
-
-
-" Indent settings
-set shiftwidth=2
-set softtabstop=2
+" allow unsaved background buffers and remember marks/undo for them
+set hidden
+" remember more commands and search history
+set history=10000
 set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set autoindent
-
-" Setup searching
+set laststatus=2
+set showmatch
 set incsearch
 set hlsearch
-
-
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-" set showbreak=…
-set showbreak=↪
-
-" bing bell
+" make searches case-sensitive only if they contain upper-case characters
+set ignorecase smartcase
+" highlight current line
+set cursorline
+set cmdheight=2
+set switchbuf=useopen
+set numberwidth=5
+set showtabline=2
+set winwidth=79
+" This makes RVM work inside Vim. I have no idea why.
+set shell=bash
+" Prevent Vim from clobbering the scrollback buffer. See
+" http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
+" keep more context when scrolling off the end of a buffer
+set scrolloff=3
+" Store temporary files in a central spot
+set backup
+if has("win32") || has("win64")
+  set backupdir=$TMP
+  set directory=$TMP
+else
+  " _ backups {{{
+  " set undodir=~/.vim/undodir//     " undo files
+  " set backupdir=~/.vim/tmp/backup// " backups
+  set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+  " ending with the double slash includes the full path in the filename
+  " of the swap files to avoid conflicts
+  " set directory=~/.vim/tmp//
+  " set directory=~/.vim/tmp/swap//   " swap files
+  " set backup
+  " set noswapfile
+  " " _ }}}
+  " Set up persistent undo for versions of vim that support it
+  " if v:version >= 703
+  "   set undodir=~/.vim/undodir
+  "   set undofile
+  "   set undolevels=1000
+  "   set undoreload=1000
+  " endif
+  set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+end
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+" display incomplete commands
+set showcmd
+" Enable highlighting for syntax
+syntax on
+" BF {
+"Show line numbers
+set number
 set visualbell
 
-" Set tab completion properly
-set wildmode=longest,list,full
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc
+" }
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
+" use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+" make tab completion for files/buffers act like bash
 set wildmenu
-
-" Yank from current cursor position to end of line
-map Y y$
-"
-" " Triggers {{{
-"
-" " Save when losing focus
-" au FocusLost    * :silent! wall
-"
-" " }}}

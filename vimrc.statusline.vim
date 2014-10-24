@@ -1,3 +1,9 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+:set statusline+=%{SyntasticStatuslineFlag()}
+"
 " Status line """""""""""""""""""""""""""""""""""""
 set laststatus=2  " Always show the status line
 set statusline=%!SetStatusLine()
@@ -38,3 +44,6 @@ function! ToggleFullPathInStatusLine()
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
+" fugitive
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
