@@ -1,12 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-:set statusline+=%{SyntasticStatuslineFlag()}
-"
-" Status line """""""""""""""""""""""""""""""""""""
 set laststatus=2  " Always show the status line
-
 set statusline=%!SetStatusLine()
 
 let g:showFullPathInStatusLine = 0
@@ -24,9 +19,9 @@ function! SetStatusLine()
   set statusline+=%#StatusLineFileType#%y " Then show the file type
 
   " Fugitive
-  " set statusline+=%#StatusLineGit#
-  " set statusline+=%{fugitive#statusline()}
-  " set statusline+=%#StatusLine#
+  set statusline+=%#StatusLineGit#
+  set statusline+=%{fugitive#statusline()}
+  set statusline+=%#StatusLine#
 
   " Right aligned items
   set statusline+=%=
@@ -44,7 +39,5 @@ function! ToggleFullPathInStatusLine()
   call SetStatusLine()
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" fugitive
-" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" Toggle the full path showing in the status line
+noremap <silent> <leader>fp :call ToggleFullPathInStatusLine()<CR>
