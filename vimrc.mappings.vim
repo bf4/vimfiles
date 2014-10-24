@@ -1,6 +1,6 @@
 " Change leader to a comma because the backslash is too far away
 " That means all \x commands turn into ,x
-" The mapleader has to be set before vundle starts loading all 
+" The mapleader has to be set before vundle starts loading all
 " the plugins.
 let mapleader=","
 
@@ -21,10 +21,9 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 "   hi<rspecGroupMethods> trans<rspecGroupMethods> lo<Todo> FG:#d33682
 " The leftmost one is the one with highest precedence, and the one we want to override.
 " Look at the list of available colors using :hi.
-" Find the group you like
-" Let’s say the one I like is Identifier, and the group I’m modifying is MatchParen. I would link them like this:
+" Find the one you like and link it to the group you're modifying
 "  hi! link rspecGroupMethods Type
-map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+map <Leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
 " Clear the search buffer when hitting return
 function! MapCR()
@@ -48,6 +47,24 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 set tags=tags;/
 
 " ================ Cleaning up ============================
+" see http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+au ColorScheme * highlight ExtraWhitespace guibg=red
+" Show trailing whitespace:
+au BufEnter * match ExtraWhitespace /\s\+$/
+" match trailing whitespace, except when typing at the end of a line.
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" Show trailing whitespace:
+au InsertLeave * match ExtraWhiteSpace /\s\+$/
+" " Switch off :match highlighting.
+" :match
+" limit match memory leaks
+" ruby syntax
+	:let ruby_space_errors = 1
+	:let ruby_no_expensive = 1
+if version >= 702
+      autocmd BufWinLeave * call clearmatches()
+endif
 " from http://www.bestofvim.com/tip/trailing-whitespace/
 " trailing whitespace will be highlighted automatically
 " match ErrorMsg '\s\+$'
