@@ -1,4 +1,5 @@
 "- vim and vimrc resources.  see notes.txt
+"
 " let vim edit a crontab successfully, no error
 " crontab: temp file must be edited in place
 " via comment on  http://drawohara.com/post/6344279/crontab-temp-file-must-be-edited-in-place
@@ -60,42 +61,9 @@ syntax on
 " BF {
 "Show line numbers
 set number
-" "necessary on some Linux distros for pathogen to properly load bundles
-" filetype on
-" filetype off
-
-" "load ftplugins and indent files
-" filetype plugin on
-" filetype indent on
-" bing bell
 set visualbell
-" set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-" " set showbreak=…
-" set showbreak=↪
-" "hide buffers when not displayed
-" set hidden
-" " use improved vim
-" set nocompatible
-" Indent settings
-" set shiftwidth=2
-" set softtabstop=2
-" set expandtab
-" set autoindent
-" 
-" " Setup searching
-" set incsearch
-" set hlsearch
-" " Triggers {{{
-"
-" " Save when losing focus
-" au FocusLost    * :silent! wall
-"
-" " }}}
 
 " }
- let g:syntastic_mode_map = { 'mode': 'active',
-                               \ 'active_filetypes': ['ruby', 'php'],
-                               \ 'passive_filetypes': ['skhtml','arb'] }
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'tw' set to 72,
 " 'cindent' is on in C files, etc.
@@ -166,24 +134,6 @@ if has('autocmd')
     endif
   endif
 
-  " vim -b : edit binary using xxd-format
-  " See :help hex-editing
-  " augroup Binary
-  "   au!
-  "   au BufReadPre   *.dat let &bin=1
-  "   au BufReadPost  *.dat if  &bin   | %!xxd
-  "   au BufReadPost  *.dat set ft=xxd | endif
-  "   au BufWritePre  *.dat if  &bin   | %!xxd -r
-  "   au BufWritePre  *.dat endif
-  "   au BufWritePost *.dat if  &bin   | %!xxd
-  "   au BufWritePost *.dat set nomod  | endif
-  " augroup END
-
-  " augroup CursorHighlight
-  "   au!
-  "   au WinEnter * let&l:statusline = g:Active_statusline
-  "   au WinLeave * let&l:statusline = g:NCstatusline
-  " augroup END
 endif
 
 
@@ -242,63 +192,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! RenameFile()
-"     let old_name = expand('%')
-"     let new_name = input('New file name: ', expand('%'), 'file')
-"     if new_name != '' && new_name != old_name
-"         exec ':saveas ' . new_name
-"         exec ':silent !rm ' . old_name
-"         redraw!
-"     endif
-" endfunction
-" map <leader>n :call RenameFile()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PROMOTE VARIABLE TO RSPEC LET
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! PromoteToLet()
-"   :normal! dd
-"   " :exec '?^\s*it\>'
-"   :normal! P
-"   :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-"   :normal ==
-" endfunction
-" :command! PromoteToLet :call PromoteToLet()
-" :map <leader>p :PromoteToLet<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Md5 COMMAND
-" Show the MD5 of the current buffer
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" command! -range Md5 :echo system('echo '.shellescape(join(getline(<line1>, <line2>), '\n')) . '| md5')
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OpenChangedFiles COMMAND
-" Open a split for each dirty file in git
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! OpenChangedFiles()
-"   only " Close all windows, unless they're modified
-"   let status = system('git status -s | grep "^ \?\(M\|A\|UU\)" | sed "s/^.\{3\}//"')
-"   let filenames = split(status, "\n")
-"   exec "edit " . filenames[0]
-"   for filename in filenames[1:]
-"     exec "sp " . filename
-"   endfor
-" endfunction
-" command! OpenChangedFiles :call OpenChangedFiles()
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" InsertTime COMMAND
-" Insert the current time
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
 " colorscheme, see guis.local
 

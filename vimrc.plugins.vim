@@ -55,7 +55,6 @@ Bundle 'SuperTab'
 " Bundle 'ack.vim'
 " Bundle 'tpope/vim-rails'
 " Bundle 'vim-bundler'
-" Bundle 'tpope/vim-fugitive'
 " Bundle 'Tagbar'
 " Bundle 'haml.zip'
 Bundle 'endwise.vim'
@@ -66,6 +65,9 @@ Bundle 'vim-scripts/tComment'
 " Bundle 'chrismetcalf/vim-yankring'
 " git update-server-info
 " Bundle 'scrooloose/syntastic'
+ let g:syntastic_mode_map = { 'mode': 'active',
+                               \ 'active_filetypes': ['ruby', 'php'],
+                               \ 'passive_filetypes': ['skhtml','arb'] }
 
 
 ""  tmux
