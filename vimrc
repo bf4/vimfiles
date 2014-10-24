@@ -13,6 +13,7 @@
     source ~/.vim/vimrc.guis.vim
     source ~/.vim/vimrc.statusline.vim
     source ~/.vim/vimrc.commands.vim
+    source ~/.vim/vimrc.tags.vim
     if filereadable(expand("~/.vim/vimrc.experimental.vim"))
         source ~/.vim/vimrc.experimental.vim
     endif
