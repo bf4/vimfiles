@@ -4,7 +4,6 @@
 "
 " Use local vimrcs if available {
     source ~/.vim/vimrc.setup.vim
-    " source ~/.vim/vimrc.setup.local
     source ~/.vim/vimrc.syntax.vim
     source ~/.vim/vimrc.mappings.vim
     source ~/.vim/vimrc.plugins.vim
