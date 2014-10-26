@@ -266,6 +266,8 @@ if version >= 700 " Vim 7.x specific colors
   call <SID>X("Search","000000","f0f000","italic,underline")
 endif
 
+call <SID>X("IncSearch","EEEEEE","FF6C60","none")
+
 call <SID>X("LineNr","848070","181414","none")
 call <SID>X("Visual","e2e4e5","282020","none")
 
@@ -418,8 +420,6 @@ call <SID>X("SpellBad","e2e4e5","","none")
 call <SID>X("MoreMsg","e2e4e5","","none")
 
 call <SID>X("WildMenu","e2e4e5","","none")
-
-call <SID>X("IncSearch","e2e4e5","","none")
 
 call <SID>X("SignColumn","e2e4e5","","none")
 hi FoldColumn guifg=#75909e guibg=NONE guisp=NONE gui=NONE ctermfg=109 ctermbg=NONE cterm=NONE
