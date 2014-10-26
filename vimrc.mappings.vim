@@ -124,3 +124,7 @@ silent! nmap <silent> <C-s> :w<CR>
 
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
+
+" check syntax of current ruby file
+" nnoremap <leader>w :!ruby -wc %<CR>
+nnoremap <silent> <leader>w :echo system("ruby -wc " . bufname("%"))<CR>
