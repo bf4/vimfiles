@@ -14,6 +14,9 @@ Bundle 'gmarik/vundle'
 " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
+" CSS color highlighter
+" recommended by http://statico.github.io/vim2.html
+Bundle 'ap/vim-css-color'
 
 Bundle 'thoughtbot/vim-rspec'
 " Rspec.vim mappings
