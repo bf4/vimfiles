@@ -17,7 +17,7 @@ if has("gui_running")
     nmap <leader>p "*p
     set guifont=Menlo:h14
     " colorscheme Dark2BF
-    colorscheme asmanian_bloodBF
+    colorscheme benjamin
     " Tell MacVim not to pop up a dialog on changed file vs. swp
     set go+=c
   else
