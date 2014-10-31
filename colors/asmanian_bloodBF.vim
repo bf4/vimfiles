@@ -250,7 +250,7 @@ endfun
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CurentWindow
 
-hi Normal guifg=#a6a3a3 guibg=#080404 guisp=#080404 gui=NONE ctermfg=248 ctermbg=232 cterm=NONE
+hi Normal guifg=#a6a3a3 guibg=NONE guisp=#080404 gui=NONE ctermfg=248 ctermbg=232 cterm=NONE
 " call <SID>X("Normal","b4b0b0","080404","none")
 hi Cursor guifg=#64de85 guibg=#bdb857 guisp=#bdb857 gui=bold ctermfg=78 ctermbg=143 cterm=bold
 " call <SID>X("Cursor","b4b0b0","","none")
@@ -280,7 +280,7 @@ call <SID>X("SpecialKey","b4b0b0","282424","bold")
 " Folds
 " -----
 " line used for closed folds
-hi Folded guifg=#484040 guibg=#080404 guisp=#080404 gui=italic ctermfg=238 ctermbg=232 cterm=NONE
+hi Folded guifg=#484040 guibg=NONE guisp=#080404 gui=italic ctermfg=238 ctermbg=232 cterm=NONE
 " call <SID>X("Folded","484040","080404","italic,bold")
 
 call <SID>X("VertSplit","200800","301810","none")
@@ -319,9 +319,9 @@ call <SID>X("PMenuSbar","503830","181414","none")
 call <SID>X("PMenuThumb","503830","848070","none")
 
 "rubyComment
-hi Comment guifg=#9e856b guibg=#080404 guisp=#080404 gui=italic ctermfg=137 ctermbg=232 cterm=NONE
+hi Comment guifg=#9e856b guibg=NONE guisp=#080404 gui=italic ctermfg=137 ctermbg=232 cterm=NONE
 " call <SID>X("Comment","686460","080404","none")
-hi Todo guifg=#686460 guibg=#080404 guisp=#080404 gui=italic ctermfg=242 ctermbg=232 cterm=NONE
+hi Todo guifg=#686460 guibg=NONE guisp=#080404 gui=italic ctermfg=242 ctermbg=232 cterm=NONE
 " call <SID>X("Todo","686460","080404","italic,underline")
 "rubyPseudoVariable
 "nil, self, symbols, etc
@@ -360,7 +360,7 @@ hi PreProc guifg=#a090a0 guibg=#5e2b2b guisp=#5e2b2b gui=italic ctermfg=247 cter
 " call <SID>X("PreProc","a090a0","080404","italic")
 "rubyControl, rubyAccess, rubyEval
 "case, begin, do, for, if unless, while, until else, etc.
-" hi Statement guifg=#9cb0e6 guibg=#080404 guisp=#080404 gui=underline ctermfg=110 ctermbg=232 cterm=underline
+" hi Statement guifg=#9cb0e6 guibg=NONE guisp=#080404 gui=underline ctermfg=110 ctermbg=232 cterm=underline
 call <SID>X("Statement","506090","080404","underline")
 "rubyString
 call <SID>X("String","a06050","080404","italic")
@@ -398,7 +398,7 @@ hi DiffDelete guifg=#853939 guibg=NONE guisp=NONE gui=NONE ctermfg=95 ctermbg=NO
 " call <SID>X("DiffDelete","b4b0b0","","none")
 hi DiffChange guifg=#a1a83e guibg=NONE guisp=NONE gui=NONE ctermfg=143 ctermbg=NONE cterm=NONE
 " call <SID>X("DiffChange","b4b0b0","","none")
-hi DiffText guifg=#7db0ad guibg=#080404 guisp=#080404 gui=NONE ctermfg=109 ctermbg=232 cterm=NONE
+hi DiffText guifg=#7db0ad guibg=NONE guisp=#080404 gui=NONE ctermfg=109 ctermbg=232 cterm=NONE
 " call <SID>X("DiffText","60d060","080404","none")
 
 hi CTagsMember guifg=#e2e4e5 guibg=NONE guisp=NONE gui=underline ctermfg=254 ctermbg=NONE cterm=underline
