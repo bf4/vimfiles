@@ -2,58 +2,26 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set runtimepath+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
+" required! let Vundle manage Vundle
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
+" :PluginList          - list configured bundles
+" :PluginInstall(!)    - install(update) bundles
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
 " see :h vundle for more details or wiki for FAQ
-" CSS color highlighter
-" recommended by http://statico.github.io/vim2.html
-Bundle 'ap/vim-css-color'
+ " NOTE: comments after Plugin command are not allowed..
 
-Bundle 'thoughtbot/vim-rspec'
-" Rspec.vim mappings
- map <Leader>t :call RunCurrentSpecFile()<CR>
- map <Leader>s :call RunNearestSpec()<CR>
- map <Leader>l :call RunLastSpec()<CR>
-" Overwrite g:rspec_command variable to execute a custom command.
-" let g:rspec_command = "!rspec --drb {spec}"
-" let g:rspec_command = "Dispatch zeus rspec {spec}"
-
-
-
-" see https://github.com/kien/ctrlp.vim
-" see http://kien.github.io/ctrlp.vim/
-Bundle 'kien/ctrlp.vim'
-" Create a file called root.dir in the root of your project - to make CtrlP work really nicely
-
-Bundle 'vim-coffee-script'
-Bundle 'tpope/vim-rails'
-
-" The following work on normal and visual modes:
-" ]]: go to next header.
-" [[: go to previous header. Contrast with ]c.
-" ][: go to next sibling header if any.
-" []: go to previous sibling header if any.
-" ]c: go to Current header.
-" ]u: go to parent header (Up).
-Bundle 'plasticboy/vim-markdown'
-let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby','javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml']
-" let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_initial_foldlevel=100
+Plugin 'endwise.vim'
 " https://github.com/tpope/vim-endwise
 " wisely
 "  add "end" in ruby,
 "  endfunction/endif/more in vim script,
 "  etc
-Bundle 'endwise.vim'
+
+Plugin 'vim-scripts/tComment'
 " https://github.com/vim-scripts/tComment
 " As operator (the prefix can be customized via g:tcommentMapLeaderOp1
 " and g:tcommentMapLeaderOp2):
@@ -64,25 +32,56 @@ Bundle 'endwise.vim'
 "     gcc          :: Toggle comment for the current line
 "     gC{motion}   :: Comment region
 "     gCc          :: Comment the current line
-Bundle 'vim-scripts/tComment'
+
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-ruby/vim-ruby'
+
+Plugin 'ap/vim-css-color'
+" CSS color highlighter
+" recommended by http://statico.github.io/vim2.html
+
+Plugin 'thoughtbot/vim-rspec'
+" Rspec.vim mappings
+ map <Leader>t :call RunCurrentSpecFile()<CR>
+ map <Leader>s :call RunNearestSpec()<CR>
+ map <Leader>l :call RunLastSpec()<CR>
+" Overwrite g:rspec_command variable to execute a custom command.
+" let g:rspec_command = "!rspec --drb {spec}"
+" let g:rspec_command = "Dispatch zeus rspec {spec}"
+
+Plugin 'kien/ctrlp.vim'
+" see https://github.com/kien/ctrlp.vim
+" see http://kien.github.io/ctrlp.vim/
+" Create a file called root.dir in the root of your project - to make CtrlP work really nicely
+
+Plugin 'vim-coffee-script'
+Plugin 'tpope/vim-rails'
+
+Plugin 'plasticboy/vim-markdown'
+" The following work on normal and visual modes:
+" ]]: go to next header.
+" [[: go to previous header. Contrast with ]c.
+" ][: go to next sibling header if any.
+" []: go to previous sibling header if any.
+" ]c: go to Current header.
+" ]u: go to parent header (Up).
+let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby','javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml']
+" let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_initial_foldlevel=100
 
 
 " colorschemes
-" see https://code.google.com/p/vimcolorschemetest/
-" http://bytefluent.com/vivify/
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'bf4/vim-wombat256i'
-Bundle 'molokai'
-Bundle 'railscasts'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'bf4/vim-wombat256i'
+Plugin 'molokai'
+Plugin 'railscasts'
 " see https://github.com/chriskempson/base16-builder/blob/master/base16
 "     https://github.com/chriskempson/base16-builder/blob/master/base16
-" Bundle 'chriskempson/base16-vim'
-
-" grb
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-ruby/vim-ruby'
-filetype plugin indent on     " required!
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+" Plugin 'chriskempson/base16-vim'
+"
+"
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
