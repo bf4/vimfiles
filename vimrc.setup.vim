@@ -1,5 +1,3 @@
-call pathogen#runtime_append_all_bundles()
-
 " let vim edit a crontab successfully, no error
 " crontab: temp file must be edited in place
 " via comment on  http://drawohara.com/post/6344279/crontab-temp-file-must-be-edited-in-place
