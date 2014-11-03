@@ -72,6 +72,9 @@ let g:vim_markdown_initial_foldlevel=100
 
 
 " colorschemes
+Plugin 'vim-scripts/colorsupport.vim'
+" used to make gui colorschemes work in the terminal
+" see http://vim.wikia.com/wiki/Using_GUI_color_settings_in_a_terminal
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'bf4/vim-wombat256i'
