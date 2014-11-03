@@ -44,7 +44,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'thoughtbot/vim-rspec'
 " Rspec.vim mappings
  map <Leader>t :call RunCurrentSpecFile()<CR>
- map <Leader>s :call RunNearestSpec()<CR>
+"  map <Leader>s :call RunNearestSpec()<CR>
  map <Leader>l :call RunLastSpec()<CR>
 " Overwrite g:rspec_command variable to execute a custom command.
 " let g:rspec_command = "!rspec --drb {spec}"
