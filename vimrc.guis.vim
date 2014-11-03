@@ -10,11 +10,6 @@ if has("gui_running")
   set t_Co=256
 
   if has("gui_mac") || has("gui_macvim")
-    " Mac OSX specific copy / paste
-    "Yank content in OS's clipboard
-    vmap <leader>y "*y
-    " Paste content from OS's clipboard
-    nmap <leader>p "*p
     set guifont=Menlo:h14
     " colorscheme Dark2BF
     colorscheme benjamin

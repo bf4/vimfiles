@@ -8,11 +8,19 @@ let mapleader=","
 
 " from http://www.drbunsen.org/text-triumvirate.html
 " Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
-"
-" Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+if has("gui_running")
+
+  if has("gui_mac") || has("gui_macvim")
+    " Mac OSX specific copy / paste
+    "Yank content in OS's clipboard
+    noremap <leader>y "*y
+    " vmap <leader>y "*y
+    noremap <leader>yy "*Y
+    " Preserve indentation while pasting text from the OS X clipboard
+    noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+    " nmap <leader>p "*p
+  endif
+endif
 
 " ================ Colors and Highlighting ============================
 " http://yanpritzker.com/2012/04/17/how-to-change-vim-syntax-colors-that-are-annoying-you/
