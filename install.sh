@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # ensure temp dirs exist
+set -e
+
 mkdir -p ./tmp
 mkdir -p ~/.vim-tmp
 
@@ -14,7 +16,28 @@ mkdir -p bundle
 git submodule update --init
 # install vundle and have it install the bundles
 git clone https://github.com/gmarik/vundle.git bundle/vundle
-vim +BundleInstall +qall
+vim +PluginInstall +qall
+if [ $? -ne 0 ]
+then
+  exit 1
+fi
+if uname -s | grep -q Darwin
+then
+  echo 'setting compile flags for OSX'
+  export CFLAGS=-Qunused-arguments
+  export CPPFLAGS=-Qunused-arguments
+elif uname -s | grep -q Linux
+then
+  echo 'Installing python-dev for Linux'
+  apt-get install python-dev
+fi
+if [ $? -eq 0 ]
+then
+  echo 'compiling'
+  cd ~/.vim/bundle/ctrlp-cmatcher/
+  ./install.sh
+  cd -
+fi
 
 # install ctags
 # https://github.com/tpope/gem-ctags

@@ -54,6 +54,19 @@ Plugin 'kien/ctrlp.vim'
 " see https://github.com/kien/ctrlp.vim
 " see http://kien.github.io/ctrlp.vim/
 " Create a file called root.dir in the root of your project - to make CtrlP work really nicely
+" https://github.com/JazzCore/ctrlp-cmatcher
+" POSIX
+"   Linux
+"     apt-get install python-dev
+"   OSX
+"     export CFLAGS=-Qunused-arguments
+"     export CPPFLAGS=-Qunused-arguments
+"   Then run the installation script:
+"
+"   cd ~/.vim/bundle/ctrlp-cmatcher/
+"   ./install.sh
+Plugin 'JazzCore/ctrlp-cmatcher'
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 Plugin 'vim-coffee-script'
 Plugin 'tpope/vim-rails'
