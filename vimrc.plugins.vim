@@ -54,6 +54,8 @@ Plugin 'kien/ctrlp.vim'
 " see https://github.com/kien/ctrlp.vim
 " see http://kien.github.io/ctrlp.vim/
 " Create a file called root.dir in the root of your project - to make CtrlP work really nicely
+" https://twitter.com/artemave/status/469204521219293185
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 " https://github.com/JazzCore/ctrlp-cmatcher
 " POSIX
 "   Linux
