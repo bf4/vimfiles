@@ -269,7 +269,8 @@ endif
 call <SID>X("IncSearch","EEEEEE","FF6C60","none")
 
 call <SID>X("LineNr","848070","181414","none")
-call <SID>X("Visual","e2e4e5","282020","none")
+" call <SID>X("Visual","e2e4e5","282020","none")
+hi Visual gui=NONE guifg=DarkGray guibg=White cterm=NONE ctermfg=DarkGray ctermbg=White
 
 " Invisible Characters
 " ------------------
