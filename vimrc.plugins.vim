@@ -95,6 +95,7 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'bf4/vim-wombat256i'
 Plugin 'molokai'
 Plugin 'railscasts'
+Plugin 'zeis/vim-kolor'
 " see https://github.com/chriskempson/base16-builder/blob/master/base16
 "     https://github.com/chriskempson/base16-builder/blob/master/base16
 " Plugin 'chriskempson/base16-vim'
