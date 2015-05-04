@@ -6,16 +6,27 @@ mkdir -p ./tmp
 mkdir -p ~/.vim-tmp
 
 # link .vim and .vimrc
-mv ~/.vim ~/.vim.oldvim
-ln -s $(pwd) ~/.vim
-mv ~/.vimrc ~/.vimrc.oldbf
-ln -s $(pwd)/vimrc ~/.vimrc
+cwd=$(pwd)
+suffix=$(date +"%Y_%m_%d")
+
+from="${cwd}"
+to="$HOME/.vim"
+[ -e "$to" ] &&
+  mv "$to" "${to}.old_${suffix}"
+ln -s "$from" "$to" || $!
+
+from="${cwd}/vimrc"
+to="$HOME/.vimrc"
+[ -e "$to" ] &&
+  mv "$to" "${to}.old_${suffix}"
+ln -s "$from" "$to" || $!
 
 mkdir -p bundle
 # required to add vundler to bundle/vundle
 git submodule update --init
 # install vundle and have it install the bundles
-git clone https://github.com/gmarik/vundle.git bundle/vundle
+[ ! -e "bundle/vundle" ] &&
+  git clone https://github.com/gmarik/vundle.git bundle/vundle
 vim +PluginInstall +qall
 if [ $? -ne 0 ]
 then

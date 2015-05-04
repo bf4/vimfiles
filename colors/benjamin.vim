@@ -84,10 +84,10 @@ if version >= 700 " Vim 7.x specific colors
 endif
 call <SID>X("IncSearch","EEEEEE","FF6C60","none")
 call <SID>X("LineNr","848070","181414","none")
-call <SID>X("Visual","e2e4e5","282020","none")
+" call <SID>X("Visual","e2e4e5","282020","none")
 " hi LineNr                    guifg=#888888 guibg=#DEDEDE
 " hi Search                    guibg=#5A647E
-" hi Visual                    guibg=#5A647E
+hi Visual guifg=#E2E4E5 guibg=#5A647E guisp=#5A647E gui=NONE cterm=NONE ctermfg=DarkGrey ctermbg=White
 
 " Invisible Characters
 " ------------------
