@@ -2,6 +2,10 @@
 # ensure temp dirs exist
 set -e
 
+[ -e "autoload/plug.vim" ] ||
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 mkdir -p ./tmp
 mkdir -p ~/.vim-tmp
 
@@ -22,12 +26,7 @@ to="$HOME/.vimrc"
 ln -s "$from" "$to" || $!
 
 mkdir -p bundle
-# required to add vundler to bundle/vundle
-git submodule update --init
-# install vundle and have it install the bundles
-[ ! -e "bundle/vundle" ] &&
-  git clone https://github.com/gmarik/vundle.git bundle/vundle
-vim +PluginInstall +qall
+vim +PlugClean +PlugInstall +qall
 if [ $? -ne 0 ]
 then
   exit 1
